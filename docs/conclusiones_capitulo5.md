@@ -12,10 +12,18 @@ retornos, consistente con la condición de Chile como economía pequeña, abiert
 cobre. El **tipo de cambio** exhibe un efecto negativo significativo, cuyo signo refleja la doble
 naturaleza —competitividad y riesgo— característica de las exportadoras de commodities.
 
-La dimensión comparativa, distintiva de este estudio, aporta una primera señal de **transmisión
-diferenciada** entre mercados: la sensibilidad al cobre es comparable entre el cobre puro
-internacional y el local, mientras que la fracción de varianza atribuida a shocks globales tiende
-a ser mayor en el mercado internacional, en la dirección prevista por la hipótesis de segmentación.
+La dimensión comparativa, distintiva de este estudio, aporta evidencia de **transmisión
+diferenciada** entre mercados: la prueba formal de igualdad de coeficientes muestra que la
+sensibilidad al precio del cobre es **significativamente mayor en el mercado internacional que en
+el chileno**, en la dirección prevista por la hipótesis de segmentación de mercados. El análisis de
+largo plazo, por su parte, revela que la relación de equilibrio entre el valor del sector y el cobre
+**existe pero se reconfiguró con la crisis financiera de 2008**, hallazgo que solo emerge al admitir
+un quiebre estructural en la prueba de cointegración. La volatilidad de los retornos exhibe además
+un **efecto apalancamiento** —las caídas elevan la volatilidad más que las alzas—. Finalmente, una
+extensión predictiva muestra que, si bien los factores macroeconómicos **explican** el retorno
+contemporáneo del cobre, apenas lo **anticipan** a un mes, resultado coherente con la hipótesis de
+eficiencia de mercado en su forma débil y que respalda el enfoque explicativo —y no predictivo—
+adoptado.
 
 ## 5.2 Implicancias
 
@@ -30,14 +38,24 @@ a ser mayor en el mercado internacional, en la dirección prevista por la hipót
 ## 5.3 Limitaciones
 
 El estudio enfrenta la **escasez estructural** de productoras de cobre puro cotizadas en el mercado
-chileno, abordada mediante el diseño de triangulación. Los resultados presentados son
-**preliminares**: pendientes la incorporación del EMBI y de los controles a nivel de empresa, la
-resolución del orden de integración del tipo de cambio en presencia de quiebres, y la batería
-completa de diagnósticos y robustez.
+chileno, abordada mediante el diseño de triangulación. Dado que la muestra del mercado chileno
+corresponde al sector minero (de composición mixta) mientras que la internacional es de cobre puro,
+parte de la diferencia de sensibilidad entre mercados podría reflejar la composición por commodity
+además del efecto de mercado; el control por el precio de cada commodity mitiga —pero no elimina
+por completo— esta consideración. Asimismo, los resultados conservan un carácter **provisional** en
+tanto resta incorporar el EMBI como medida de riesgo soberano local y los controles a nivel de
+empresa (apalancamiento, tamaño, liquidez), que podrían afinar las magnitudes estimadas. La batería
+de diagnósticos y de robustez —dependencia de sección cruzada, raíz unitaria en panel, cointegración
+con quiebre, volatilidad condicional, corrección por pruebas múltiples y submuestras— ya fue, en
+cambio, ejecutada.
 
 ## 5.4 Líneas futuras de investigación
 
-Se proponen como extensiones: (i) la estimación formal de la asimetría de régimen mediante modelos
-de cambio de Markov; (ii) la incorporación de la volatilidad condicional (GARCH) cuando esta sea
-central; (iii) el análisis a frecuencia diaria/semanal para la dinámica de corto plazo; y (iv) la
-ampliación del análisis de segmentación con pruebas formales de integración de mercados.
+Se proponen como extensiones: (i) la incorporación del EMBI y de los controles a nivel de empresa
+para consolidar las magnitudes; (ii) la estimación de la asimetría de régimen mediante modelos de
+cambio de Markov, complementaria al fechado por puntos de giro empleado aquí; (iii) el análisis a
+frecuencia diaria o semanal para capturar la dinámica de corto plazo y la microestructura; (iv) la
+ampliación del análisis de segmentación con medidas formales de integración de mercados variable en
+el tiempo (Bekaert y Harvey, 1995); y (v) la identificación de la naturaleza de los shocks del cobre
+—demanda versus oferta— siguiendo a Pedersen (2015), que la evidencia sugiere relevante para la
+magnitud y el signo de la respuesta.
