@@ -184,5 +184,3 @@ la especificación de panel (efectos fijos frente a aleatorios) se discute en §
 | Empresa | Tamaño | log(cap. bursátil) | Mercado | Mensual | nivel |
 | Empresa | Volatilidad | desv. móvil retornos | Calculada | Mensual | nivel |
 | Empresa | Apalancamiento | Deuda/Patrimonio | CMF | Trimestral→mensual | ffill+rezago |
-
-*Referencias metodológicas completas en `docs/revision_literatura.md`, bloque 2.5.*

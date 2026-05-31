@@ -29,6 +29,25 @@ entorno de tasas de interés y del apetito por riesgo de los mercados internacio
 empíricamente esta relación, para el caso específico de las empresas de minería de cobre con
 exposición a Chile, es el propósito de esta investigación.
 
+La pertinencia de un análisis a nivel de empresa, y no únicamente de variables agregadas, radica
+en que el valor de una compañía minera condensa, en un único precio observable de mercado, las
+expectativas de los inversionistas sobre la trayectoria futura del commodity, los costos de
+producción y el costo del capital. Una variación en el precio del cobre se transmite a la
+valoración por dos vías complementarias: altera los flujos de caja esperados —de forma amplificada
+por el elevado apalancamiento operativo característico de la minería— y modifica, a través del
+entorno de tasas y de la prima de riesgo, la tasa a la que esos flujos se descuentan. Estudiar la
+acción, por tanto, ofrece una ventana directa y de alta frecuencia sobre cómo el mercado procesa la
+información macroeconómica relevante para el sector, complementaria a los indicadores económicos
+tradicionales que se publican con rezago.
+
+Adicionalmente, el carácter global de las grandes productoras de cobre con activos en Chile
+introduce una dimensión comparativa que rara vez se explota: una misma exposición al cobre se
+transa simultáneamente en mercados bursátiles de muy distinta profundidad y liquidez —los centros
+financieros internacionales, por un lado, y la Bolsa de Santiago, por otro—. Esta circunstancia
+permite contrastar si el mercado más profundo incorpora los shocks macroeconómicos de manera
+distinta al mercado local, una pregunta de interés tanto para la teoría de la eficiencia y la
+integración de mercados como para la práctica de la gestión de carteras y de riesgos.
+
 ## 1.2 Problema de investigación y justificación
 
 La literatura financiera ha establecido que las variables macroeconómicas constituyen factores
@@ -39,6 +58,15 @@ el precio del cobre con variables macroeconómicas agregadas como el tipo de cam
 crecimiento, son escasos los estudios que analizan su impacto sobre la **valoración bursátil de
 las propias empresas mineras**, y prácticamente inexistentes los que evalúan si dicho impacto es
 **estable a lo largo de las distintas fases del ciclo del precio del cobre**.
+
+La paradoja resulta llamativa: Chile es el principal productor mundial de cobre y, sin embargo, la
+literatura que modela la reacción de las acciones mineras al precio del metal se ha desarrollado
+para las bolsas de Nueva York, Toronto o Australia, dejando fuera precisamente al país cuya
+economía está más expuesta a este commodity. Esta omisión no es trivial: la estructura del mercado
+bursátil chileno —de menor profundidad y con una representación reducida del sector cuprífero
+puro— plantea interrogantes propias sobre cómo y con qué celeridad incorpora la información del
+cobre a los precios, que no pueden responderse extrapolando los resultados de mercados más
+desarrollados.
 
 Este vacío es relevante por tres razones. Primero, desde la perspectiva de los **inversionistas**,
 comprender qué factores mueven los retornos del sector y con qué intensidad es esencial para la

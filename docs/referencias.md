@@ -45,6 +45,8 @@ Fama, E. F., & French, K. R. (1989). Business conditions and expected returns on
 
 Harding, D., & Pagan, A. (2002). Dissecting the cycle: A methodological investigation. *Journal of Monetary Economics*, 49(2), 365–381.
 
+Hausman, J. A. (1978). Specification tests in econometrics. *Econometrica*, 46(6), 1251–1271.
+
 Hamilton, J. D. (1989). A new approach to the economic analysis of nonstationary time series and the business cycle. *Econometrica*, 57(2), 357–384.
 
 Im, K. S., Pesaran, M. H., & Shin, Y. (2003). Testing for unit roots in heterogeneous panels. *Journal of Econometrics*, 115(1), 53–74.
@@ -66,6 +68,8 @@ Labbé, F., & De Gregorio, J. (2011). *Copper, the real exchange rate and macroe
 Pedersen, M. (2015). *The impact of commodity price shocks in a major producing economy: The case of copper and Chile* (Working Paper N°753). Banco Central de Chile.
 
 Pesaran, M. H. (2007). A simple panel unit root test in the presence of cross-section dependence. *Journal of Applied Econometrics*, 22(2), 265–312.
+
+Newey, W. K., & West, K. D. (1987). A simple, positive semi-definite, heteroskedasticity and autocorrelation consistent covariance matrix. *Econometrica*, 55(3), 703–708.
 
 Pesaran, M. H., & Shin, Y. (1998). Generalized impulse response analysis in linear multivariate models. *Economics Letters*, 58(1), 17–29.
 

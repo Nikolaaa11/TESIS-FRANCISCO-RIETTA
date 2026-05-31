@@ -160,6 +160,8 @@ Como complemento a la naturaleza explicativa de la tesis, se evaluó la capacida
 | Random Forest | +0.033 | 56% | 0.0488 | 0.0361 |
 | Gradient Boosting | -0.167 | 54% | 0.0536 | 0.0399 |
 
+![Desempeño predictivo fuera de muestra por modelo (R² OOS y acierto direccional).](outputs/figures/fig_predictor.png)
+
 El **R² fuera de muestra es cercano a cero o negativo** en todos los modelos: los factores macroeconómicos **explican** el retorno contemporáneo del cobre (Capítulo 4) pero apenas lo **anticipan** a un mes. Este resultado, lejos de ser una debilidad, **refuerza la hipótesis de eficiencia de mercado en su forma débil** y justifica el enfoque explicativo —y no predictivo— adoptado. El mejor desempeño direccional corresponde al término de momentum (AR(1)). Una versión interactiva de este modelo se encuentra en la plataforma web del proyecto.
 
 Como contraste complementario de la hipótesis de paseo aleatorio se aplica el test de razón de varianzas de Lo y MacKinlay (1988), con estadístico robusto a heterocedasticidad. Para el **precio del cobre** se rechaza el paseo aleatorio (VR(2) = 1.39; z = 2.99), evidencia de **momentum** propia de los mercados de commodities. En cambio, para los **retornos del sector** el paseo aleatorio **no se rechaza** (VR(2) = 1.10; z = 1.06), lo que es consistente con la eficiencia de mercado en forma débil del lado accionario y con la escasa predecibilidad documentada arriba.

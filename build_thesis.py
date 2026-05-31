@@ -66,7 +66,7 @@ def set_base_styles(doc):
     st.font.name = "Times New Roman"; st.font.size = Pt(12)
     st.font.color.rgb = RGBColor(0x00, 0x00, 0x00)
     pf = st.paragraph_format
-    pf.line_spacing_rule = WD_LINE_SPACING.ONE_POINT_FIVE
+    pf.line_spacing_rule = WD_LINE_SPACING.DOUBLE   # interlineado doble (norma de tesis)
     pf.space_after = Pt(8); pf.alignment = WD_ALIGN_PARAGRAPH.JUSTIFY
     pf.widow_control = True
     for h, sz in [("Heading 1", 17), ("Heading 2", 13.5), ("Heading 3", 12)]:
@@ -142,13 +142,19 @@ def field_block(doc, instr, placeholder):
 
 
 def add_runs_with_bold(paragraph, text):
-    for part in re.split(r"(\*\*.+?\*\*|\[COMPLETAR[^\]]*\])", text):
+    # negrita **..**, código `..`, itálica *..*, marca editorial [COMPLETAR..]
+    pat = r"(\*\*.+?\*\*|`[^`]+`|\*[^*\n]+?\*|\[COMPLETAR[^\]]*\])"
+    for part in re.split(pat, text):
         if not part:
             continue
         if part.startswith("**") and part.endswith("**"):
             paragraph.add_run(part[2:-2]).bold = True
+        elif part.startswith("`") and part.endswith("`"):
+            r = paragraph.add_run(part[1:-1]); r.font.name = "Consolas"; r.font.size = Pt(10.5)
         elif part.startswith("[COMPLETAR"):
             r = paragraph.add_run(part); r.italic = True; r.font.color.rgb = GRAY
+        elif len(part) > 2 and part.startswith("*") and part.endswith("*"):
+            paragraph.add_run(part[1:-1]).italic = True
         else:
             paragraph.add_run(part)
 
@@ -237,8 +243,28 @@ def add_figure(doc, cap_text, path):
     caption(doc, "Figura", cap_text)
 
 
+def unwrap_paragraphs(md):
+    """Une las líneas de texto envueltas en un único párrafo lógico, incluidas las
+    continuaciones de ítems de lista (mejor flujo; evita que negritas o frases se corten
+    en los saltos de línea del markdown)."""
+    # Línea tras la cual NO se debe anexar (bloque no extensible o vacía):
+    def is_break(s):
+        return (not s.strip()) or bool(re.match(r"\s*(#{1,6}\s|\||!\[|>|---)", s))
+    # Línea de continuación: texto plano que no inicia un nuevo elemento estructural:
+    def is_cont(s):
+        return bool(s.strip()) and not re.match(r"\s*(#{1,6}\s|[-*]\s|\d+\.\s|\||!\[|>|---)", s)
+    out = []
+    for raw in md.split("\n"):
+        s = raw.rstrip()
+        if out and is_cont(s) and not is_break(out[-1]):
+            out[-1] += " " + s.strip()
+        else:
+            out.append(s)
+    return "\n".join(out)
+
+
 def render_markdown(doc, md_text):
-    lines = md_text.split("\n"); i = 0; tablebuf = []
+    lines = unwrap_paragraphs(md_text).split("\n"); i = 0; tablebuf = []
     def flush():
         nonlocal tablebuf
         if tablebuf:
@@ -381,6 +407,36 @@ def add_abstract_en(doc):
               "market segmentation.")
 
 
+SIMBOLOS = [
+    ("r_{i,t}", "Retorno logarítmico de la empresa i en el mes t"),
+    ("β", "Coeficiente de sensibilidad (carga factorial) a un factor de riesgo"),
+    ("α", "Velocidad de ajuste del mecanismo de corrección de error (VECM)"),
+    ("Δ", "Operador de primera diferencia"),
+    ("σ², σ", "Varianza y desviación estándar (volatilidad)"),
+    ("ε_{i,t}", "Término de error idiosincrático"),
+    ("λ", "Precio de mercado del riesgo asociado a un factor (APT)"),
+    ("I(d)", "Serie integrada de orden d"),
+    ("VR(q)", "Razón de varianzas a horizonte q (Lo-MacKinlay)"),
+    ("γ", "Parámetro de asimetría (efecto apalancamiento) en GJR-GARCH"),
+    ("ω_{i←j}(h)", "Fracción de la varianza de i explicada por el shock j a horizonte h (FEVD)"),
+]
+
+
+def add_simbolos(doc):
+    doc.add_heading("Lista de símbolos", 1)
+    doc.add_paragraph("Se resume a continuación la notación matemática empleada a lo largo del "
+                      "documento.").paragraph_format.space_after = Pt(10)
+    tbl = doc.add_table(rows=len(SIMBOLOS), cols=2); tbl.autofit = True
+    for i, (sym, desc) in enumerate(SIMBOLOS):
+        c0, c1 = tbl.rows[i].cells
+        r = c0.paragraphs[0].add_run(sym); r.italic = True; r.font.name = "Cambria Math"
+        c1.paragraphs[0].add_run(desc)
+        for c in (c0, c1):
+            _cell_pad(c)
+            for rr in c.paragraphs[0].runs:
+                rr.font.size = Pt(11)
+
+
 def add_abbrev(doc):
     doc.add_heading("Lista de abreviaturas y siglas", 1)
     tbl = doc.add_table(rows=len(ABREV), cols=2); tbl.autofit = True
@@ -435,7 +491,8 @@ def build():
     doc.add_heading("Índice general", 1); field_block(doc, 'TOC \\o "1-3" \\h \\z \\u', "Actualizar campo (clic derecho → Actualizar campos)."); page(doc)
     doc.add_heading("Índice de tablas", 1); field_block(doc, 'TOC \\h \\z \\c "Tabla"', "Actualizar campo."); page(doc)
     doc.add_heading("Índice de figuras", 1); field_block(doc, 'TOC \\h \\z \\c "Figura"', "Actualizar campo."); page(doc)
-    add_abbrev(doc)
+    add_abbrev(doc); page(doc)
+    add_simbolos(doc)
     set_pgnum_format(sec0, "lowerRoman", start=1)
     footer_pagenum(sec0)
     running_header(sec0, TITULO_CORTO)

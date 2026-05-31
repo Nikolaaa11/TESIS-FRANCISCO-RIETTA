@@ -27,13 +27,27 @@ adoptado.
 
 ## 5.2 Implicancias
 
+Los hallazgos tienen implicancias prácticas y académicas que conviene desarrollar.
+
 - **Para los inversionistas:** la fuerte dependencia de los retornos respecto del precio del cobre
   y del riesgo global subraya la importancia de la gestión de la exposición a commodities y a
-  factores internacionales por sobre los domésticos.
+  factores internacionales por sobre los domésticos. En términos de construcción de carteras, la
+  evidencia sugiere que la diversificación frente a estos dos factores —el ciclo del cobre y la
+  aversión al riesgo global— es más determinante para el riesgo de una posición en el sector que la
+  exposición a las variables macroeconómicas locales.
 - **Para la gestión empresarial:** la exposición cambiaria significativa justifica políticas
-  explícitas de cobertura, especialmente en empresas con estructura de costos en moneda local.
+  explícitas de cobertura, especialmente en empresas con estructura de costos en moneda local. La
+  persistencia de la volatilidad documentada por el modelo GARCH, junto con su asimetría, refuerza
+  la conveniencia de instrumentos de cobertura que contemplen escenarios de tensión prolongada.
 - **Para la comprensión del mercado de capitales chileno:** la evidencia de transmisión
-  diferenciada invita a profundizar en la profundidad, liquidez e integración del mercado local.
+  diferenciada invita a profundizar en la profundidad, liquidez e integración del mercado local, y
+  abre la pregunta de política sobre cómo fortalecer la representación del sector cuprífero en la
+  bolsa nacional.
+- **Para la literatura académica:** el estudio aporta un caso empírico —el principal productor
+  mundial de cobre— a la intersección entre la literatura de factores macroeconómicos y retornos,
+  la de transmisión de precios de commodities a la valoración de empresas, y la de segmentación e
+  integración de mercados, ofreciendo evidencia de que un mismo riesgo subyacente puede precarse de
+  manera diferenciada según la profundidad del mercado en que se transa.
 
 ## 5.3 Limitaciones
 
@@ -59,3 +73,7 @@ ampliación del análisis de segmentación con medidas formales de integración 
 el tiempo (Bekaert y Harvey, 1995); y (v) la identificación de la naturaleza de los shocks del cobre
 —demanda versus oferta— siguiendo a Pedersen (2015), que la evidencia sugiere relevante para la
 magnitud y el signo de la respuesta.
+
+## 5.5 Reflexión final
+
+En conjunto, esta investigación muestra que el sector del cobre con exposición a Chile constituye un laboratorio especialmente fértil para estudiar la transmisión de las condiciones macroeconómicas a la valoración de los activos. El precio del cobre emerge como el eje articulador de los retornos, en torno al cual gravitan el riesgo global y el tipo de cambio, mientras que los factores estrictamente domésticos juegan un papel secundario. La originalidad del enfoque no reside en ninguno de estos hallazgos por separado —varios son consistentes con la teoría y con la evidencia internacional— sino en su integración para un mismo conjunto de empresas y, sobre todo, en la comparación explícita entre el mercado bursátil internacional y el chileno. Esa comparación revela que un mismo riesgo subyacente no se precia de manera idéntica en mercados de distinta profundidad, abriendo una agenda de investigación que conecta la economía del cobre con la microestructura y la eficiencia de los mercados de capitales emergentes. La combinación de rigor econométrico, reproducibilidad y una pregunta de investigación claramente delimitada aspira a que este trabajo sea un punto de partida útil, antes que un punto final, para el estudio de la valoración bursátil del cobre en Chile.

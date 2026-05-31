@@ -139,6 +139,7 @@ def anexo_predictivo():
         f"{pd_['n_train']}/{pd_['n_test']} (entrenamiento/prueba).\n\n"
         "| Modelo | R² fuera de muestra | Acierto direccional | RMSE | MAE |\n"
         "|---|---|---|---|---|\n" + filas + "\n\n"
+        "![Desempeño predictivo fuera de muestra por modelo (R² OOS y acierto direccional).](outputs/figures/fig_predictor.png)\n\n"
         "El **R² fuera de muestra es cercano a cero o negativo** en todos los modelos: los factores "
         "macroeconómicos **explican** el retorno contemporáneo del cobre (Capítulo 4) pero apenas lo "
         "**anticipan** a un mes. Este resultado, lejos de ser una debilidad, **refuerza la "

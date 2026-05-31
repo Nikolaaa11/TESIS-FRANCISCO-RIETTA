@@ -8,6 +8,7 @@ para incrustar en el documento de tesis (Word/PDF). Lee web/data.json.
 from __future__ import annotations
 import json
 import numpy as np
+import pandas as pd
 import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
@@ -98,9 +99,99 @@ def fig_tri(d):
     plt.close(fig)
 
 
+ET = {"d_cobre": "Δ Cobre", "d_vix": "Δ VIX", "d_fed_funds": "Δ FedFunds",
+      "d_treasury10": "Δ Tr10Y", "d_usdclp": "Δ TC", "d_tasa_local": "Δ Tasa",
+      "d_actividad_local": "Δ Activ.", "retorno_cartera": "Retorno"}
+REGS = ["retorno_cartera", "d_cobre", "d_vix", "d_fed_funds", "d_treasury10",
+        "d_usdclp", "d_tasa_local", "d_actividad_local"]
+
+
+def fig_correlacion():
+    s = pd.read_parquet(C.DATA_PROCESSED / "series_B.parquet")
+    cols = [c for c in REGS if c in s.columns]
+    corr = s[cols].dropna().corr()
+    labs = [ET.get(c, c) for c in cols]
+    fig, ax = plt.subplots(figsize=(6.2, 5.2))
+    im = ax.imshow(corr.values, cmap="RdBu_r", vmin=-1, vmax=1)
+    ax.set_xticks(range(len(labs))); ax.set_xticklabels(labs, rotation=45, ha="right", fontsize=9)
+    ax.set_yticks(range(len(labs))); ax.set_yticklabels(labs, fontsize=9)
+    for i in range(len(labs)):
+        for j in range(len(labs)):
+            v = corr.values[i, j]
+            ax.text(j, i, f"{v:.2f}", ha="center", va="center",
+                    color="white" if abs(v) > 0.55 else "#222", fontsize=8)
+    ax.set_title("Matriz de correlación de los factores (muestra B)", fontsize=11, weight="bold")
+    fig.colorbar(im, fraction=0.046, pad=0.04)
+    fig.savefig(C.FIGURES / "fig_correlacion.png"); plt.close(fig)
+
+
+def fig_distribucion():
+    fig, ax = plt.subplots(figsize=(7.2, 3.4))
+    for suf, lab, col in [("_B", "B · internacional", BLUE), ("_A", "A · Pucobre", COPPER),
+                          ("_C", "C · minería", GREEN)]:
+        r = pd.read_parquet(C.DATA_PROCESSED / f"series{suf}.parquet")["retorno_cartera"].dropna()
+        ax.hist(r, bins=35, alpha=.45, color=col, label=lab, density=True)
+    ax.set_xlabel("Retorno mensual"); ax.set_ylabel("Densidad")
+    ax.set_title("Distribución de los retornos mensuales por muestra", fontsize=11, weight="bold", loc="left")
+    ax.legend(frameon=False)
+    fig.savefig(C.FIGURES / "fig_distribucion.png"); plt.close(fig)
+
+
+def fig_garch():
+    from arch import arch_model
+    r = pd.read_parquet(C.DATA_PROCESSED / "series_B.parquet")["retorno_cartera"].dropna() * 100
+    res = arch_model(r, vol="GARCH", p=1, q=1, dist="t").fit(disp="off")
+    cv = res.conditional_volatility
+    fig, ax = plt.subplots(figsize=(7.6, 3.2))
+    ax.plot(r.index, cv, color=COPPER, lw=1.4)
+    ax.fill_between(r.index, 0, cv, color=COPPER, alpha=.08)
+    ax.set_ylabel("Volatilidad condicional (%)")
+    ax.set_title("Volatilidad condicional estimada (GARCH(1,1)) — cartera B",
+                 fontsize=11, weight="bold", loc="left")
+    fig.savefig(C.FIGURES / "fig_garch.png"); plt.close(fig)
+
+
+def fig_betas(d):
+    bs = (d.get("avanzado", {}) or {}).get("betas_estandarizados")
+    if not bs:
+        return
+    bs = sorted(bs, key=lambda x: abs(x["beta_std"]))
+    fig, ax = plt.subplots(figsize=(7, 3.4))
+    ax.barh([x["factor"] for x in bs], [x["beta_std"] for x in bs],
+            color=[GREEN if x["beta_std"] >= 0 else RED for x in bs])
+    ax.axvline(0, color="#888", lw=.8)
+    ax.set_xlabel("Efecto en desviaciones estándar (σ)")
+    ax.set_title("Importancia económica: betas estandarizados (muestra B)",
+                 fontsize=11, weight="bold", loc="left")
+    fig.savefig(C.FIGURES / "fig_betas.png"); plt.close(fig)
+
+
+def fig_predictor():
+    import json
+    f = C.WEB_DATA / "predictor.json"
+    if not f.exists():
+        return
+    m = json.loads(f.read_text(encoding="utf-8"))["metricas_oos"]
+    nombres = list(m.keys())
+    r2 = [m[k]["r2_oos"] for k in nombres]
+    dirn = [m[k]["acierto_direccional"] * 100 for k in nombres]
+    x = np.arange(len(nombres)); w = .38
+    fig, ax = plt.subplots(figsize=(7.6, 3.4))
+    ax.bar(x - w/2, r2, w, label="R² fuera de muestra", color=BLUE)
+    ax2 = ax.twinx()
+    ax2.bar(x + w/2, dirn, w, label="Acierto direccional (%)", color=COPPER)
+    ax.axhline(0, color="#888", lw=.8)
+    ax.set_xticks(x); ax.set_xticklabels(nombres, rotation=20, ha="right", fontsize=8)
+    ax.set_ylabel("R² OOS"); ax2.set_ylabel("Acierto direccional (%)")
+    ax.set_title("Desempeño predictivo fuera de muestra por modelo",
+                 fontsize=11, weight="bold", loc="left")
+    fig.savefig(C.FIGURES / "fig_predictor.png"); plt.close(fig)
+
+
 def construir():
     d = _data()
     fig_ciclo(d); fig_coef(d); fig_fevd(d); fig_tri(d)
+    fig_correlacion(); fig_distribucion(); fig_garch(); fig_betas(d); fig_predictor()
     print("[ok] figuras en", C.FIGURES)
 
 

@@ -8,6 +8,21 @@
 
 ## 4.1 Análisis descriptivo y propiedades de las series (OE1)
 
+Antes de la modelación, conviene caracterizar las series. La estadística descriptiva (Anexo A)
+muestra retornos mensuales con media en torno a cero, **asimetría negativa** y **exceso de
+curtosis**, rasgos típicos de los retornos financieros. La distribución de los retornos por muestra
+(Figura 1) confirma colas más pesadas que la normal y una mayor dispersión en la muestra
+internacional de cobre puro que en el sector minero local.
+
+![Distribución de los retornos mensuales de las carteras de cada muestra.](outputs/figures/fig_distribucion.png)
+
+La matriz de correlación de los factores (Figura 2) revela que el retorno del sector se asocia
+positivamente con el precio del cobre y negativamente con el VIX y el tipo de cambio, mientras que
+las correlaciones entre los regresores son bajas, lo que mitiga preocupaciones de multicolinealidad
+—confirmadas más adelante con los factores de inflación de la varianza—.
+
+![Matriz de correlación entre el retorno del sector y los factores macro-financieros (muestra B).](outputs/figures/fig_correlacion.png)
+
 Las pruebas de raíz unitaria confirman el patrón esperado y validan la estrategia de doble vía.
 El **logaritmo del precio del cobre** resulta no estacionario en nivel —integrado de orden uno,
 I(1) (ADF p = 0,013; KPSS rechaza la estacionariedad, p = 0,014)— mientras que su **retorno**
@@ -222,7 +237,11 @@ distribución t estimada (ν ≈ 12) confirma además la presencia de **colas m�
 normal, característica de los retornos financieros. La extensión a un modelo asimétrico
 **GJR-GARCH** revela un **efecto apalancamiento** estadísticamente significativo (γ = 0,22;
 p = 0,023), preferido por el criterio BIC: las caídas del retorno elevan la volatilidad futura más
-que las alzas de igual magnitud, un patrón habitual en los mercados accionarios.
+que las alzas de igual magnitud, un patrón habitual en los mercados accionarios. La volatilidad
+condicional estimada (Figura) traza con claridad los episodios de tensión —la crisis de 2008 y la
+pandemia de 2020 destacan como picos—, ilustrando el agrupamiento de volatilidad.
+
+![Volatilidad condicional estimada por el modelo GARCH(1,1) para la cartera de la muestra B.](outputs/figures/fig_garch.png)
 
 **Corrección por pruebas múltiples.** Dado que el contraste de las hipótesis involucra la
 estimación simultánea de numerosos coeficientes, se aplica la corrección de **Benjamini-Hochberg
@@ -237,6 +256,8 @@ mayor impacto sobre el retorno es el **riesgo global (VIX, −0,31 σ)**, seguid
 **precio del cobre (+0,29 σ)** y, a mayor distancia, el tipo de cambio (−0,13 σ). Esta jerarquía
 —dos factores globales en la cúspide— constituye evidencia económica, y no solo estadística, a
 favor de la dominancia de los factores internacionales (H6).
+
+![Importancia económica de cada factor medida por su coeficiente estandarizado (muestra B).](outputs/figures/fig_betas.png)
 
 **Local Projections.** Como alternativa al VAR, más robusta a la mala especificación, se estima la
 respuesta del retorno a un shock del cobre mediante **proyecciones locales (Jordà, 2005)** con
@@ -267,3 +288,13 @@ es concluyente**: la resolución del orden de integración (Zivot-Andrews), las 
 ciclo (OE5), los diagnósticos de panel y VAR (CD de Pesaran, estabilidad), la robustez por
 subperíodos, la **cointegración con quiebre** (Gregory-Hansen) y la **volatilidad condicional**
 (GARCH) confieren una base empírica sólida a las conclusiones aquí presentadas.
+
+## 4.9 Síntesis del contraste de hipótesis
+
+Para cerrar el capítulo conviene recapitular el resultado del contraste de cada hipótesis a la luz de la evidencia reunida. La **hipótesis H1**, que postula un efecto positivo del precio del cobre sobre los retornos, se ve sólidamente respaldada: el coeficiente es positivo, de magnitud económica relevante, significativo al 1% y, además, robusto tanto a la corrección por pruebas múltiples como a la partición en subperíodos. Es, sin ambigüedad, el determinante central del valor del sector.
+
+La **hipótesis H2** sobre el efecto del tipo de cambio se confirma con signo negativo: la depreciación del peso se asocia a menores retornos, un resultado que captura simultáneamente el canal de competitividad y el de riesgo, y que es coherente con la naturaleza de empresas que valoran sus flujos en dólares. La **hipótesis H3** relativa a las tasas de interés no encuentra respaldo en la especificación base, donde ni la tasa local ni la externa resultan significativas; este resultado, antes que una anomalía, refleja la preeminencia de los factores de commodity y de riesgo global sobre el canal de descuento para este sector específico.
+
+La **hipótesis H4** sobre el riesgo global se confirma: el VIX presenta un efecto negativo y significativo y, medido en desviaciones estándar, constituye el factor de mayor impacto económico sobre el retorno. La **hipótesis H5** de cointegración de largo plazo, inicialmente ambigua, se confirma una vez que se admite un quiebre estructural en 2008: la relación de equilibrio entre el valor del sector y el cobre existe, pero se reconfiguró con la crisis financiera global. La **hipótesis H6** de dominancia de los factores globales recibe doble respaldo, tanto por la descomposición de varianza —donde los shocks globales explican una fracción muy superior a los locales— como por la jerarquía de los coeficientes estandarizados.
+
+Finalmente, la **hipótesis H7**, eje distintivo de esta investigación, se respalda mediante la prueba formal de igualdad de coeficientes entre mercados: la sensibilidad de los retornos al precio del cobre es significativamente mayor en el mercado bursátil internacional que en el chileno. En conjunto, seis de las siete hipótesis encuentran respaldo empírico, configurando un cuadro coherente y teóricamente fundamentado sobre la transmisión del impacto macroeconómico al sector del cobre, con la comparación entre mercados como su aporte más original.

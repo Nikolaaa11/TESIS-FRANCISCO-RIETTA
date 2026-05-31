@@ -220,12 +220,5 @@ macroeconómicos globales y locales sobre los retornos del sector de minería de
 exposición a Chile, integrando la medición de sensibilidad (panel), el análisis de equilibrio de
 largo plazo (cointegración), la dinámica de shocks (impulso-respuesta y descomposición de
 varianza) y, de manera distintiva, la evaluación de la estabilidad de dichas relaciones según la
-fase del ciclo del precio del cobre.
-
----
-
-### Nota sobre la tabla de literatura
-
-Mantén en paralelo la matriz `autor | año | datos | método | hallazgo | relación con mi tesis`
-(ver `docs/revision_literatura.md`, sección final). Sintetizarla en prosa es lo que da solidez a
-las secciones 2.2–2.4 y, sobre todo, al argumento del vacío en 2.6.
+fase del ciclo del precio del cobre, así como la comparación de su transmisión entre el mercado
+bursátil internacional y el chileno.
