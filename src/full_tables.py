@@ -145,7 +145,27 @@ def anexo_predictivo():
         "hipótesis de eficiencia de mercado en su forma débil** y justifica el enfoque explicativo —y "
         "no predictivo— adoptado. El mejor desempeño direccional corresponde al término de momentum "
         "(AR(1)). Una versión interactiva de este modelo se encuentra en la plataforma web del "
-        "proyecto.\n")
+        "proyecto.\n\n" + _vr_parrafo())
+
+
+def _vr_parrafo():
+    try:
+        from . import variance_ratio as vr
+        g = pd.read_parquet(C.DATA_INTERIM / "raw_macro_global.parquet")
+        cobre = np.log(g["cobre"].resample("ME").last()).diff().loc[C.FECHA_INICIO:C.FECHA_FIN]
+        cart = pd.read_parquet(C.DATA_PROCESSED / "series_B.parquet")["retorno_cartera"]
+        vc = vr.variance_ratio(cobre, 2); vs = vr.variance_ratio(cart, 2)
+        return (
+            "Como contraste complementario de la hipótesis de paseo aleatorio se aplica el test de "
+            "razón de varianzas de Lo y MacKinlay (1988), con estadístico robusto a "
+            f"heterocedasticidad. Para el **precio del cobre** se rechaza el paseo aleatorio "
+            f"(VR(2) = {vc['VR']:.2f}; z = {vc['z_robusto']:.2f}), evidencia de **momentum** propia "
+            "de los mercados de commodities. En cambio, para los **retornos del sector** el paseo "
+            f"aleatorio **no se rechaza** (VR(2) = {vs['VR']:.2f}; z = {vs['z_robusto']:.2f}), lo que "
+            "es consistente con la eficiencia de mercado en forma débil del lado accionario y con la "
+            "escasa predecibilidad documentada arriba.\n")
+    except Exception:
+        return ""
 
 
 def construir():

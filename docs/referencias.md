@@ -55,6 +55,8 @@ Johansen, S. (1988). Statistical analysis of cointegration vectors. *Journal of 
 
 Jordà, Ò. (2005). Estimation and inference of impulse responses by local projections. *The American Economic Review*, 95(1), 161–182.
 
+Lo, A. W., & MacKinlay, A. C. (1988). Stock market prices do not follow random walks: Evidence from a simple specification test. *The Review of Financial Studies*, 1(1), 41–66.
+
 Jorion, P. (1990). The exchange-rate exposure of U.S. multinationals. *The Journal of Business*, 63(3), 331–345.
 
 Kwiatkowski, D., Phillips, P. C. B., Schmidt, P., & Shin, Y. (1992). Testing the null hypothesis of stationarity against the alternative of a unit root. *Journal of Econometrics*, 54(1–3), 159–178.

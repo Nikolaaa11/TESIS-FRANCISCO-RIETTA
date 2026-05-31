@@ -69,6 +69,8 @@ def main(descargar=False):
     ok.append(_step("7. Test de Hausman (FE vs RE)", hausman_test.analizar))
     ok.append(_step("8. Raíz unitaria en panel (CIPS)", panel_unit_root.analizar))
     ok.append(_step("9. Comparación de mercados (H7)", market_comparison.analizar))
+    from . import variance_ratio
+    ok.append(_step("9b. Razón de varianzas (Lo-MacKinlay)", variance_ratio.analizar))
     ok.append(_step("10. Exportar datos web", export_web.construir_json))
     ok.append(_step("11. Figuras de publicación", make_figures.construir))
     ok.append(_step("12. Anexos con tablas reales", full_tables.construir))
