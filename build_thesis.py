@@ -30,15 +30,15 @@ TITULO = ("Impacto de las variables macroeconómicas en los retornos accionarios
           "bursátil internacional y el chileno, 2004–2024")
 TITULO_CORTO = "Macroeconomía y retornos del sector cobre en Chile"
 
-NAVY = RGBColor(0x1F, 0x38, 0x64)   # azul tinta para encabezados
-RULE = "1F3864"
+NAVY = RGBColor(0x00, 0x00, 0x00)   # negro (norma APA para títulos)
+RULE = "808080"
 GRAY = RGBColor(0x59, 0x59, 0x59)
-BODY_FONT = "Cambria"               # serif moderno para el cuerpo
-HEAD_FONT = "Calibri"               # sans para títulos
+BODY_FONT = "Georgia"               # tipografía USS / APA
+HEAD_FONT = "Georgia"               # misma fuente en títulos (APA)
 
-CAPS = ["introduccion_capitulo1.md", "marco_teorico_capitulo2.md",
-        "metodologia_capitulo3.md", "resultados_capitulo4.md",
-        "conclusiones_capitulo5.md", "referencias.md", "anexos.md", "glosario.md"]
+# Estructura USS (Señor de Sipán) / esquema de informe de investigación
+CAPS = ["uss_01_introduccion.md", "uss_02_metodo.md", "uss_03_resultados.md",
+        "uss_04_conclusiones.md", "referencias.md", "anexos.md"]
 
 ABREV = [
     ("APT", "Arbitrage Pricing Theory (teoría de valoración por arbitraje)"),
@@ -71,12 +71,18 @@ def set_base_styles(doc):
     pf.line_spacing_rule = WD_LINE_SPACING.DOUBLE   # interlineado doble (norma de tesis)
     pf.space_after = Pt(8); pf.alignment = WD_ALIGN_PARAGRAPH.JUSTIFY
     pf.widow_control = True
-    for h, sz in [("Heading 1", 18), ("Heading 2", 14), ("Heading 3", 12.5)]:
+    # Niveles de título según APA 7: N1 centrado negrita; N2 izq. negrita; N3 izq. negrita cursiva
+    apa = [("Heading 1", 14, WD_ALIGN_PARAGRAPH.CENTER, False),
+           ("Heading 2", 12, WD_ALIGN_PARAGRAPH.LEFT, False),
+           ("Heading 3", 12, WD_ALIGN_PARAGRAPH.LEFT, True)]
+    for h, sz, al, ital in apa:
         s = doc.styles[h]
-        s.font.name = HEAD_FONT; s.font.size = Pt(sz); s.font.bold = True
-        s.font.color.rgb = NAVY
+        s.font.name = HEAD_FONT; s.font.size = Pt(sz); s.font.bold = True; s.font.italic = ital
+        s.font.color.rgb = RGBColor(0, 0, 0)
         s.paragraph_format.keep_with_next = True
-        s.paragraph_format.space_before = Pt(14 if h != "Heading 1" else 6)
+        s.paragraph_format.alignment = al
+        s.paragraph_format.line_spacing_rule = WD_LINE_SPACING.DOUBLE
+        s.paragraph_format.space_before = Pt(12)
         s.paragraph_format.space_after = Pt(6)
     # estilo de leyenda (Caption)
     try:
@@ -123,17 +129,11 @@ def footer_pagenum(section):
     run = p.add_run(); _fld(run, "PAGE"); run.font.size = Pt(10); run.font.name = BODY_FONT
 
 
-def running_header(section, text):
+def running_header(section, text=None):
+    # APA: número de página arriba a la derecha; sin running head en formato estudiante.
     section.header.is_linked_to_previous = False
     p = section.header.paragraphs[0]; p.text = ""; p.alignment = WD_ALIGN_PARAGRAPH.RIGHT
-    r = p.add_run(text); r.font.size = Pt(9); r.italic = True
-    r.font.color.rgb = GRAY; r.font.name = BODY_FONT
-    # filete inferior del encabezado
-    pPr = p._p.get_or_add_pPr(); pbdr = OxmlElement("w:pBdr"); pPr.append(pbdr)
-    bottom = OxmlElement("w:bottom")
-    for k, v in (("w:val", "single"), ("w:sz", "4"), ("w:space", "4"), ("w:color", "BFBFBF")):
-        bottom.set(qn(k), v)
-    pbdr.append(bottom)
+    run = p.add_run(); _fld(run, "PAGE"); run.font.size = Pt(11); run.font.name = BODY_FONT
 
 
 def field_block(doc, instr, placeholder):
@@ -265,7 +265,7 @@ def unwrap_paragraphs(md):
     return "\n".join(out)
 
 
-def render_markdown(doc, md_text):
+def render_markdown(doc, md_text, hanging=False):
     lines = unwrap_paragraphs(md_text).split("\n"); i = 0; tablebuf = []
     def flush():
         nonlocal tablebuf
@@ -305,7 +305,11 @@ def render_markdown(doc, md_text):
             p.paragraph_format.first_line_indent = Cm(-0.8)
             add_runs_with_bold(p, f"{mn.group(1)}. {mn.group(2)}")
             i += 1; continue
-        add_runs_with_bold(doc.add_paragraph(), line); i += 1
+        p = doc.add_paragraph()
+        if hanging:  # sangría francesa para referencias APA
+            p.paragraph_format.left_indent = Cm(1.27)
+            p.paragraph_format.first_line_indent = Cm(-1.27)
+        add_runs_with_bold(p, line); i += 1
     flush()
 
 
@@ -335,8 +339,10 @@ def hrule(doc, color=RULE, sz=12, space=10):
 
 
 def add_cover(doc):
-    centered(doc, "UNIVERSIDAD SAN SEBASTIÁN", 16, bold=True, space=2, color=NAVY, font=HEAD_FONT)
-    centered(doc, "Facultad de Ingeniería · Magíster en Data Science", 12, space=6, color=GRAY, font=HEAD_FONT)
+    BLACK = RGBColor(0, 0, 0)
+    centered(doc, "UNIVERSIDAD SEÑOR DE SIPÁN", 16, bold=True, space=2, color=BLACK)
+    centered(doc, "FACULTAD DE [Facultad]", 13, bold=True, space=2, color=BLACK)
+    centered(doc, "ESCUELA PROFESIONAL DE [Escuela / Programa]", 13, bold=True, space=10, color=BLACK)
     logo = next((c for c in (ROOT/"assets"/"logo_uss.png", ROOT.parent/"tesis-plataforma"/"logo_uss.png")
                  if c.exists()), None)
     if logo:
@@ -344,17 +350,18 @@ def add_cover(doc):
     else:
         for _ in range(2):
             doc.add_paragraph()
-    hrule(doc, space=18)
-    centered(doc, TITULO, 20, bold=True, space=14, color=RGBColor(0x10,0x10,0x10), font=HEAD_FONT)
-    hrule(doc, space=6)
-    centered(doc, "Tesis para optar al grado de Magíster en Data Science", 12.5, italic=True, space=40, color=GRAY)
-    for _ in range(3):
-        doc.add_paragraph()
-    centered(doc, "Autor", 11, color=GRAY, space=0)
-    centered(doc, "Francisco Rietta", 13, bold=True, space=10)
-    centered(doc, "Profesor guía", 11, color=GRAY, space=0)
-    centered(doc, "[Nombre del profesor guía]", 13, space=30)
-    centered(doc, "Santiago, Chile · 2026", 12, color=GRAY)
+    centered(doc, "TESIS", 14, bold=True, space=12, color=BLACK)
+    centered(doc, TITULO.upper(), 14, bold=True, space=12, color=BLACK)
+    centered(doc, "PARA OPTAR EL TÍTULO PROFESIONAL / GRADO ACADÉMICO DE [Grado o Título]",
+             12, space=24, color=BLACK)
+    centered(doc, "Autor(es):", 12, bold=True, space=0, color=BLACK)
+    centered(doc, "Rietta Francisco", 12, space=10, color=BLACK)
+    centered(doc, "Asesor:", 12, bold=True, space=0, color=BLACK)
+    centered(doc, "[Grado académico. Apellidos y Nombres del asesor]", 12, space=10, color=BLACK)
+    centered(doc, "Línea de Investigación:", 12, bold=True, space=0, color=BLACK)
+    centered(doc, "[Línea de Investigación aprobada por la Escuela]", 12, space=24, color=BLACK)
+    centered(doc, "Pimentel – Perú", 12, bold=True, space=2, color=BLACK)
+    centered(doc, "2026", 12, bold=True, color=BLACK)
 
 
 def page(doc): doc.add_page_break()
@@ -480,8 +487,8 @@ def build():
     set_base_styles(doc)
     enable_hyphenation(doc)
     sec0 = doc.sections[0]
-    sec0.left_margin = Cm(3); sec0.right_margin = Cm(2.5)
-    sec0.top_margin = Cm(2.5); sec0.bottom_margin = Cm(2.5)
+    sec0.left_margin = Cm(3.5); sec0.right_margin = Cm(3)
+    sec0.top_margin = Cm(3); sec0.bottom_margin = Cm(3)
     sec0.different_first_page_header_footer = True  # portada sin encabezado/pie
 
     # Preliminares (romano)
@@ -502,19 +509,18 @@ def build():
     add_abbrev(doc); page(doc)
     add_simbolos(doc)
     set_pgnum_format(sec0, "lowerRoman", start=1)
-    footer_pagenum(sec0)
-    running_header(sec0, TITULO_CORTO)
+    running_header(sec0)
 
     # Cuerpo (arábigo)
     body = doc.add_section(WD_SECTION.NEW_PAGE)
-    body.left_margin = Cm(3); body.right_margin = Cm(2.5)
-    body.top_margin = Cm(2.5); body.bottom_margin = Cm(2.5)
+    body.left_margin = Cm(3.5); body.right_margin = Cm(3)
+    body.top_margin = Cm(3); body.bottom_margin = Cm(3)
     body.different_first_page_header_footer = False
     set_pgnum_format(body, "decimal", start=1)
-    footer_pagenum(body)
-    running_header(body, TITULO_CORTO)
+    running_header(body)
     for k, fname in enumerate(CAPS):
-        render_markdown(doc, (DOCS / fname).read_text(encoding="utf-8"))
+        render_markdown(doc, (DOCS / fname).read_text(encoding="utf-8"),
+                        hanging=(fname == "referencias.md"))
         if k < len(CAPS) - 1:
             page(doc)
 
