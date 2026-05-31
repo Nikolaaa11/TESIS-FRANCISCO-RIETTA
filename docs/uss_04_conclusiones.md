@@ -2,6 +2,13 @@
 
 ## 4.1 Conclusiones
 
+La presente investigación cuantificó y comparó el impacto de las variables macroeconómicas globales y
+nacionales sobre los retornos accionarios de las empresas de cobre con exposición a Chile durante
+2004-2024, en respuesta al problema y a los objetivos planteados. A partir de la evidencia reunida
+mediante el diseño de triangulación por muestras y la batería econométrica aplicada, se desprenden las
+siguientes conclusiones, organizadas en correspondencia con los objetivos específicos y las hipótesis
+de la investigación.
+
 **Primera.** El precio del cobre es el principal determinante de los retornos accionarios del sector
 con exposición a Chile: su efecto es positivo, significativo al 1%, estable entre las fases del ciclo
 y robusto entre subperíodos, confirmándose la hipótesis H1.
@@ -32,8 +39,13 @@ de eficiencia de mercado en su forma débil y que respalda el enfoque explicativ
 
 ## 4.2 Recomendaciones
 
+A partir de las conclusiones, y con miras tanto a la consolidación de la evidencia como a su
+aplicación práctica, se formulan las siguientes recomendaciones para futuras investigaciones, para los
+agentes del mercado y para la política pública.
+
 **Primera.** Incorporar el EMBI como medida de riesgo soberano local y los controles a nivel de
-empresa (apalancamiento, tamaño, liquidez) para consolidar las magnitudes estimadas.
+empresa (apalancamiento, tamaño, liquidez) para consolidar las magnitudes estimadas y robustecer la
+identificación de los efectos.
 
 **Segunda.** Estimar la asimetría de régimen mediante modelos de cambio de Markov, complementarios al
 fechado por puntos de giro, y analizar la dinámica de corto plazo a frecuencia diaria o semanal.
