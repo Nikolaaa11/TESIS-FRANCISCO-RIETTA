@@ -150,10 +150,21 @@ Para cada familia de modelos se verifican los supuestos pertinentes: ausencia de
 autocorrelación (Breusch-Godfrey, Ljung-Box) y de heterocedasticidad (con atención a efectos
 ARCH, dada la naturaleza financiera de los retornos), dependencia de sección cruzada en el
 panel (test CD de Pesaran), estabilidad del VAR (raíces dentro del círculo unitario) y
-selección de rezagos por criterios de información. La robustez de los resultados se examina
-mediante submuestras, definiciones alternativas de las variables (cobre spot frente a futuros;
-cartera equiponderada frente a ponderada por capitalización) y la inclusión o exclusión de
-períodos atípicos como la crisis de 2008 y la pandemia de 2020.
+selección de rezagos por criterios de información.
+
+El diseño contempla, además, una **batería ampliada de diagnósticos y de robustez de segunda
+generación** que se reporta en el Capítulo 4: (i) pruebas de raíz unitaria en panel **CIPS**
+(Pesaran, 2007), robustas a la dependencia de sección cruzada; (ii) cointegración con quiebre
+estructural endógeno de **Gregory-Hansen (1996)**; (iii) modelación de la volatilidad asimétrica
+mediante **GJR-GARCH** (efecto apalancamiento); (iv) funciones impulso-respuesta por **proyecciones
+locales** (Jordà, 2005) como alternativa al VAR; (v) corrección por **pruebas múltiples**
+(Benjamini-Hochberg) sobre los p-valores del panel; (vi) reporte de **magnitudes económicas**
+mediante coeficientes estandarizados; (vii) una **prueba formal de igualdad de coeficientes entre
+mercados** (interacciones factor × mercado) para contrastar la transmisión diferenciada; y (viii)
+el **test de razón de varianzas** de Lo y MacKinlay (1988) para la hipótesis de paseo aleatorio. La
+robustez se examina también mediante submuestras (pre/post 2008 y 2020), definiciones alternativas
+de las variables y carteras equiponderada frente a ponderada por capitalización. El justificante de
+la especificación de panel (efectos fijos frente a aleatorios) se discute en §4.2.
 
 ---
 
