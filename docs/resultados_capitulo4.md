@@ -24,6 +24,14 @@ inicial respondía a la pérdida de potencia de las pruebas convencionales ante 
 período (súper-ciclo, crisis de 2008, pandemia de 2020). El cobre en nivel, contrastado con la
 misma prueba, se mantiene como I(1) (p = 0,17).
 
+Dado que el test de Pesaran detecta dependencia de sección cruzada en el panel (§4.7), se aplica
+además la prueba de raíz unitaria de **segunda generación CIPS** (Pesaran, 2007), robusta a dicha
+dependencia. Los resultados confirman de manera contundente la estructura supuesta: el panel de
+**log-precios** de las empresas no rechaza la raíz unitaria (CIPS = −2,29, por encima del valor
+crítico al 5% de −2,57), comportándose como **I(1)**, mientras que el panel de **retornos** la
+rechaza con holgura (CIPS = −16,32), confirmándose como **I(0)**. La doble vía del diseño queda así
+validada también con métodos de panel apropiados para la dependencia transversal.
+
 ## 4.2 Determinantes de los retornos: global vs local (OE2)
 
 El modelo de panel de efectos fijos con errores Driscoll-Kraay (muestra B, cinco productoras de
