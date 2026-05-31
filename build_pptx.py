@@ -228,8 +228,47 @@ def s_conclusion():
             "Gracias.", 20, RGBColor(0xC0,0xC0,0xC8), align=PP_ALIGN.CENTER, italic=True)
 
 
+def s_vacio():
+    s = prs.slides.add_slide(BLANK); bg(s)
+    kicker_title(s, "Contribución", "El vacío que llena la tesis")
+    bullets(s, Inches(0.7), Inches(2.2), Inches(11.9), Inches(4.4), [
+        ("Cobre ↔ peso", "está bien documentado (Chen-Rogoff 2003; Pincheira-Hardy 2019): el peso es una commodity currency."),
+        ("Cobre ↔ bolsa chilena agregada", "lo estudió Zurita-Fuentes-Gregoire (2005), pero a nivel de índice y hasta 2003."),
+        ("Cobre ↔ acciones mineras", "solo se ha modelado para NY, Toronto y Australia — excluyendo a Chile."),
+        ("El vacío:", "nadie estima el efecto a nivel de empresas de cobre con exposición a Chile, ni compara el mercado internacional con el chileno para 2004–2024."),
+    ], size=20, gap=12)
+    footer(s, 4)
+
+
+def s_robustez():
+    s = prs.slides.add_slide(BLANK); bg(s)
+    kicker_title(s, "Robustez", "La evidencia resiste el escrutinio")
+    bullets(s, Inches(0.7), Inches(2.2), Inches(11.9), Inches(4.4), [
+        ("CD-Pesaran = 24,5:", "hay dependencia de sección cruzada → se usan errores Driscoll-Kraay."),
+        ("CIPS (Pesaran 2007):", "raíz unitaria en panel robusta a esa dependencia confirma precios I(1), retornos I(0)."),
+        ("Corrección FDR:", "cobre, VIX y tipo de cambio siguen significativos — no son falsos positivos."),
+        ("GJR-GARCH:", "efecto apalancamiento (γ=0,22); Local Projections cross-validan la IRF."),
+        ("Subperíodos:", "el efecto del cobre se mantiene (0,56 en 2004-19 → 0,75 en 2020-24)."),
+    ], size=19, gap=11)
+    footer(s, 12)
+
+
+def s_predictor():
+    s = prs.slides.add_slide(BLANK); bg(s)
+    kicker_title(s, "Extensión predictiva", "Explicar no es predecir")
+    bullets(s, Inches(0.7), Inches(2.3), Inches(11.9), Inches(3.4), [
+        ("Los factores macro EXPLICAN", "el retorno contemporáneo del cobre (R² within 0,24, cobre ***)."),
+        ("Pero NO lo ANTICIPAN:", "el R² fuera de muestra es ≈0 o negativo en todos los modelos a un mes."),
+        ("Lectura:", "coherente con la eficiencia de mercado (forma débil); justifica el enfoque explicativo."),
+    ], size=21, gap=13)
+    textbox(s, Inches(0.7), Inches(6.0), Inches(11.9), Inches(0.8),
+            "Una versión interactiva del predictor está disponible en la plataforma web del proyecto.",
+            16, INK2, italic=True)
+    footer(s, 13)
+
+
 def build():
-    s_title(); s_problema(); s_objetivo(); s_diseno(); s_metodo()
+    s_title(); s_problema(); s_objetivo(); s_vacio(); s_diseno(); s_metodo()
     s_fig("Resultados · OE5", "El ciclo del cobre", "fig_ciclo_cobre.png",
           "Fases de expansión/contracción fechadas con Bry-Boschan, base del análisis por régimen.", 6)
     s_fig("Resultados · OE2", "Sensibilidad por factor", "fig_coeficientes.png",
@@ -241,8 +280,10 @@ def build():
     s_resultados_clave()
     s_fig("Resultados · OE6", "Comparación entre mercados", "fig_triangulacion.png",
           "β del cobre y dominancia global por muestra. Cobre puro: B≈A; menor en la minería mixta (C).", 10)
-    s_fig("Robustez", "Impulso-respuesta y proyecciones locales", "fig_irf.png",
+    s_fig("Resultados · OE4", "Impulso-respuesta y proyecciones locales", "fig_irf.png",
           "La respuesta positiva e inmediata al shock del cobre se confirma con Local Projections (Jordà).", 11)
+    s_robustez()
+    s_predictor()
     s_conclusion()
     OUT.parent.mkdir(exist_ok=True)
     prs.save(OUT)
