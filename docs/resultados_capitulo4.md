@@ -66,11 +66,19 @@ cointegración** (estadístico de traza 32,1 > 29,8 al 95%), lo que sugiere una 
 de largo plazo. Sin embargo, el **test de bordes ARDL** no permite rechazar la ausencia de
 relación de nivel (estadístico F de bordes ≈ 0,95, por debajo de las cotas críticas). Esta
 discrepancia entre ambos enfoques sugiere que la relación de largo plazo, de existir, es **débil o
-inestable**. Confirmado ya el orden I(1) del tipo de cambio (§4.1), la explicación más probable no
-es el orden de integración sino la **presencia de quiebres en la relación de cointegración** misma
-(el súper-ciclo altera la relación de equilibrio). La conclusión prudente es **mantener cautela
-sobre H5**: se reportará la relación de largo plazo del VECM como indicativa, complementándola con
-pruebas de cointegración con quiebre (Gregory-Hansen) en la versión final.
+inestable** ante las pruebas que no admiten quiebres. Confirmado ya el orden I(1) del tipo de cambio
+(§4.1), la hipótesis natural es que la relación de equilibrio se **desplazó estructuralmente**
+durante el período.
+
+La prueba de **Gregory y Hansen (1996)**, que admite un quiebre endógeno en la relación de
+cointegración, **confirma esta hipótesis y resuelve la ambigüedad**: el estadístico ADF\* es de
+**−6,68**, inferior al valor crítico al 5% (−4,92), de modo que **se rechaza la ausencia de
+cointegración**, y el quiebre se fecha en **junio de 2008** —coincidente con la crisis financiera
+global—. La lectura es nítida: **existe una relación de equilibrio de largo plazo entre el valor del
+sector, el cobre y el tipo de cambio (H5 respaldada), pero esa relación se reconfiguró con la crisis
+de 2008**, lo que explica por qué las pruebas que ignoran el quiebre (ARDL/Johansen) arrojaban
+evidencia mixta. Este resultado ilustra la importancia de incorporar los quiebres estructurales en
+el análisis de largo plazo de un sector tan expuesto al ciclo del commodity.
 
 ## 4.4 Dinámica de shocks (OE4)
 
@@ -163,6 +171,15 @@ período 2020–2024 (0,751)**. La mayor sensibilidad reciente es coherente con 
 la atención de los mercados sobre el cobre en el contexto de la transición energética, y confirma
 que el signo y la relevancia del efecto **no dependen de un subperíodo particular**.
 
+**Volatilidad condicional (GARCH).** La prueba ARCH-LM rechaza con holgura la ausencia de efectos
+de heterocedasticidad condicional (estadístico 41,1; p = 0,000), lo que justifica modelar la
+varianza con un GARCH(1,1). El modelo estimado sobre los retornos de la cartera arroja una
+**persistencia de la volatilidad de 0,86** (α = 0,15; β = 0,70), indicativa de **agrupamiento de
+volatilidad**: los episodios de alta volatilidad —como las crisis— tienden a prolongarse. La
+distribución t estimada (ν ≈ 12) confirma además la presencia de **colas más pesadas** que la
+normal, característica de los retornos financieros. Este resultado respalda la decisión de
+winsorizar y de tratar con cautela la inferencia basada en supuestos gaussianos.
+
 ## 4.8 Discusión integrada
 
 Los resultados preliminares dibujan un cuadro coherente con la teoría: **el precio del cobre es el
@@ -171,15 +188,16 @@ principal determinante de los retornos del sector** (H1), con un efecto positivo
 dominan a los locales** en la explicación de la varianza (H6); y el **tipo de cambio** ejerce un
 efecto negativo significativo cuyo signo refleja la doble naturaleza —competitividad y riesgo—
 anticipada (H2). La comparación entre mercados aporta una primera señal, aún débil, de
-**transmisión diferenciada** (H7), mientras que la evidencia de **cointegración de largo plazo**
-(H5) resulta mixta, lo que sugiere una relación de equilibrio débil o afectada por quiebres. La
-fuerte dependencia de sección cruzada detectada (§4.7) confirma, además, la pertinencia del
-tratamiento econométrico adoptado.
+**transmisión diferenciada** (H7); y la **relación de cointegración de largo plazo** (H5) **se
+confirma una vez que se admite un quiebre estructural** en 2008 (Gregory-Hansen), lo que reconcilia
+la evidencia inicialmente mixta. La fuerte dependencia de sección cruzada detectada (§4.7) confirma,
+además, la pertinencia del tratamiento econométrico adoptado.
 
-Estas lecturas son **provisionales**. Su elevación a la categoría de hallazgos definitivos exige
-todavía: (i) incorporar el EMBI y los controles a nivel de empresa; (ii) reespecificar la relación
-de largo plazo con pruebas de cointegración con quiebre (Gregory-Hansen); (iii) modelar la
-volatilidad condicional (efectos ARCH/GARCH); y (iv) formalizar la comparación entre mercados con
-pruebas de igualdad de coeficientes. Los componentes ya ejecutados —resolución del orden de
-integración, interacciones por ciclo, diagnósticos de panel y VAR, y robustez por subperíodos—
-confieren, no obstante, una base empírica sólida a las conclusiones provisionales.
+Estas lecturas son **provisionales** en un único sentido acotado: su elevación a hallazgos
+plenamente definitivos exige todavía (i) incorporar el **EMBI** y los **controles a nivel de
+empresa**, y (ii) formalizar la comparación entre mercados con **pruebas de igualdad de
+coeficientes** entre muestras. En cambio, el grueso del aparato econométrico **ya está ejecutado y
+es concluyente**: la resolución del orden de integración (Zivot-Andrews), las interacciones por
+ciclo (OE5), los diagnósticos de panel y VAR (CD de Pesaran, estabilidad), la robustez por
+subperíodos, la **cointegración con quiebre** (Gregory-Hansen) y la **volatilidad condicional**
+(GARCH) confieren una base empírica sólida a las conclusiones aquí presentadas.
