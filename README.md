@@ -53,6 +53,18 @@ jupyter lab
 > reales). Los notebooks requieren las series locales del BCCh para el análisis definitivo,
 > pero el pipeline ya funciona con cobre+TC+acciones.
 
+## Reproducibilidad — un solo comando
+
+```powershell
+python -m src.run_all          # regenera todo el análisis (usa datos en caché)
+python -m src.run_all --descargar   # vuelve a descargar de FRED/Yahoo primero
+python build_thesis.py         # regenera el documento Word/PDF (requiere Word)
+```
+
+`run_all` ejecuta el pipeline completo (paneles B/A/C → análisis avanzado, GARCH/Gregory-Hansen,
+robustez FDR/GJR/Local Projections, predictor, Hausman, CIPS, comparación de mercados → datos web,
+figuras y anexos) con manejo de errores y resumen. Cada resultado de la tesis es reproducible.
+
 ## Diseño: triangulación por tres muestras
 
 Ver `docs/diseno_triangulacion.md`. El universo se organiza en tres muestras comparables:
