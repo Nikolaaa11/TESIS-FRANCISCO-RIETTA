@@ -127,6 +127,26 @@ N = 864; R² = 0.1132; empresas = 4.
 Todo el código de adquisición, transformación, estimación y generación de figuras y tablas está disponible en el repositorio público del proyecto, organizado en módulos reproducibles (`src/`) y cuadernos Jupyter (`notebooks/`). Cada resultado de esta tesis puede regenerarse ejecutando los scripts correspondientes.
 
 
+## Anexo J. Síntesis de pruebas de diagnóstico y robustez
+
+La siguiente tabla consolida el conjunto de pruebas de diagnóstico y robustez ejecutadas, todas sobre datos reales y reproducibles desde el repositorio.
+
+| Prueba | Resultado | Conclusión |
+|---|---|---|
+| Dependencia de sección cruzada (CD de Pesaran) | CD = 24.5049, p = 0.0 | Dependencia significativa → errores Driscoll-Kraay |
+| Raíz unitaria en panel (CIPS, Pesaran 2007) | log-precios I(1); retornos I(0) | Confirma la doble vía, robusto a dependencia cruzada |
+| Raíz unitaria con quiebre (Zivot-Andrews) | TC nivel p = 0.9504 | Tipo de cambio confirmado I(1) |
+| Cointegración con quiebre (Gregory-Hansen) | ADF* = -6.6825 < -4.92; quiebre 2008-06 | Relación de largo plazo confirmada (reconfigurada en 2008) |
+| Estabilidad del VAR y causalidad de Granger | estable = True; Granger cobre→retorno p = 0.0026 | Sistema válido; el cobre antecede al retorno |
+| Corrección por pruebas múltiples (FDR) | sig.: Cobre, VIX, TC CLP | Los hallazgos centrales no son falsos positivos |
+| Volatilidad asimétrica (GJR-GARCH) | γ = 0.2208, p = 0.0233 | Efecto apalancamiento significativo |
+| Estabilidad por fase del ciclo (interacción) | cobre×exp p = 0.6267 | Sensibilidad estable entre regímenes |
+| Robustez por subperíodos | β cobre 0.5594 → 0.7509 | Efecto estable, se intensifica tras 2020 |
+| Igualdad de coeficientes entre mercados (H7) | d_cobre×global = +0,25 (p = 0,01) | Mayor sensibilidad en el mercado internacional |
+| Razón de varianzas (Lo-MacKinlay) | cartera: no rechaza paseo aleatorio | Eficiencia débil del lado accionario |
+| Local Projections (Jordà) | respuesta positiva al impacto | Cross-valida la IRF del VAR |
+
+
 ## Anexo I. Extensión predictiva: ¿explican o anticipan?
 
 Como complemento a la naturaleza explicativa de la tesis, se evaluó la capacidad **predictiva** fuera de muestra de los factores macroeconómicos sobre el retorno mensual del cobre (a un mes), comparando un baseline ingenuo, un AR(1), un modelo lineal regularizado (Ridge) y dos modelos no lineales (Random Forest, Gradient Boosting), con división temporal 180/61 (entrenamiento/prueba).

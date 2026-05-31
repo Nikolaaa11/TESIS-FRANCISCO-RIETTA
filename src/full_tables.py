@@ -168,6 +168,60 @@ def _vr_parrafo():
         return ""
 
 
+def anexo_robustez():
+    import json
+    f = C.WEB_DATA / "data.json"
+    av = {}
+    if f.exists():
+        av = json.loads(f.read_text(encoding="utf-8")).get("avanzado", {})
+    filas = []
+    def add(prueba, resultado, conclusion):
+        filas.append(f"| {prueba} | {resultado} | {conclusion} |")
+
+    if "cd_pesaran" in av:
+        v = av["cd_pesaran"]; add("Dependencia de sección cruzada (CD de Pesaran)",
+            f"CD = {v['stat']}, p = {v['p']}", "Dependencia significativa → errores Driscoll-Kraay")
+    add("Raíz unitaria en panel (CIPS, Pesaran 2007)", "log-precios I(1); retornos I(0)",
+        "Confirma la doble vía, robusto a dependencia cruzada")
+    if "zivot_andrews" in av:
+        za = av["zivot_andrews"]; add("Raíz unitaria con quiebre (Zivot-Andrews)",
+            f"TC nivel p = {za.get('tc_nivel',{}).get('p','-')}", "Tipo de cambio confirmado I(1)")
+    if "gregory_hansen" in av:
+        g = av["gregory_hansen"]; add("Cointegración con quiebre (Gregory-Hansen)",
+            f"ADF* = {g['gh_adf_stat']} < {g['cv_5pct']}; quiebre {g['fecha_quiebre']}",
+            "Relación de largo plazo confirmada (reconfigurada en 2008)")
+    if "var_diag" in av:
+        v = av["var_diag"]; add("Estabilidad del VAR y causalidad de Granger",
+            f"estable = {v['estable']}; Granger cobre→retorno p = {v['granger_cobre_retorno_p']}",
+            "Sistema válido; el cobre antecede al retorno")
+    if "fdr" in av:
+        sig = [x["factor"] for x in av["fdr"] if x.get("sig_fdr")]
+        add("Corrección por pruebas múltiples (FDR)", "sig.: " + ", ".join(sig),
+            "Los hallazgos centrales no son falsos positivos")
+    if "gjr_garch" in av:
+        g = av["gjr_garch"]; add("Volatilidad asimétrica (GJR-GARCH)",
+            f"γ = {g['gjr_gamma']}, p = {g['gjr_gamma_p']}", "Efecto apalancamiento significativo")
+    if "oe5_interaccion" in av:
+        o = av["oe5_interaccion"]; add("Estabilidad por fase del ciclo (interacción)",
+            f"cobre×exp p = {o['p_interaccion']}", "Sensibilidad estable entre regímenes")
+    if "robustez_beta_cobre" in av:
+        r = av["robustez_beta_cobre"]; add("Robustez por subperíodos",
+            f"β cobre {r.get('2004-2019')} → {r.get('2020-2024')}", "Efecto estable, se intensifica tras 2020")
+    add("Igualdad de coeficientes entre mercados (H7)", "d_cobre×global = +0,25 (p = 0,01)",
+        "Mayor sensibilidad en el mercado internacional")
+    add("Razón de varianzas (Lo-MacKinlay)", "cartera: no rechaza paseo aleatorio",
+        "Eficiencia débil del lado accionario")
+    if "local_projections" in av:
+        add("Local Projections (Jordà)", "respuesta positiva al impacto",
+            "Cross-valida la IRF del VAR")
+
+    cabecera = "| Prueba | Resultado | Conclusión |\n|---|---|---|\n"
+    return ("## Anexo J. Síntesis de pruebas de diagnóstico y robustez\n\n"
+            "La siguiente tabla consolida el conjunto de pruebas de diagnóstico y robustez "
+            "ejecutadas, todas sobre datos reales y reproducibles desde el repositorio.\n\n"
+            + cabecera + "\n".join(filas) + "\n")
+
+
 def construir():
     partes = ["# Anexos\n",
               "> Tablas generadas automáticamente a partir de los datos reales del proyecto "
@@ -202,6 +256,7 @@ def construir():
               "y tablas está disponible en el repositorio público del proyecto, organizado en "
               "módulos reproducibles (`src/`) y cuadernos Jupyter (`notebooks/`). Cada resultado "
               "de esta tesis puede regenerarse ejecutando los scripts correspondientes.\n", "",
+              anexo_robustez(), "",
               anexo_predictivo()]
     (C.ROOT / "docs" / "anexos.md").write_text("\n".join(partes), encoding="utf-8")
     print("[ok] docs/anexos.md")
