@@ -123,6 +123,10 @@ def construir():
         ax.spines[sp].set_visible(False)
     fig.tight_layout(); fig.savefig(C.FIGURES / "fig_irf.png", dpi=300)
     plt.close(fig)
+    out["irf"] = {"h": [int(x) for x in h],
+                  "resp": [round(float(v), 5) for v in resp],
+                  "lo": [round(float(v), 5) for v in (resp - 2*se)],
+                  "hi": [round(float(v), 5) for v in (resp + 2*se)]}
 
     (C.ROOT / "web" / "advanced.json").write_text(
         json.dumps(out, ensure_ascii=False, indent=2), encoding="utf-8")

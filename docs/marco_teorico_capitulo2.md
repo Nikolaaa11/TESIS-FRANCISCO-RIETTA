@@ -30,6 +30,29 @@ los retornos a lo largo del ciclo económico. Esta literatura fundamenta el enfo
 multifactorial que adopta la presente investigación: modelar el retorno del sector como
 función de un vector de factores macroeconómicos y financieros [ver Capítulo 3].
 
+Formalmente, bajo la APT el retorno del activo *i* se expresa como una combinación lineal de su
+exposición a *k* factores comunes:
+
+> r_i = E(r_i) + β_{i,1} f_1 + β_{i,2} f_2 + … + β_{i,k} f_k + ε_i,
+
+donde f_j son los factores sistemáticos (no anticipados), β_{i,j} las sensibilidades (cargas
+factoriales) del activo a cada factor, y ε_i un componente idiosincrático diversificable con
+E(ε_i)=0. Ausente el arbitraje, el retorno esperado satisface E(r_i) = r_f + Σ_j β_{i,j} λ_j,
+donde λ_j es el precio de mercado del riesgo asociado al factor j. La contribución empírica de
+esta tesis consiste, precisamente, en estimar las cargas β del sector cobre respecto de un
+conjunto explícito de factores macroeconómicos y financieros, y en contrastar su signo, magnitud
+y significancia.
+
+**Canales de transmisión.** La teoría identifica dos vías por las cuales un factor macroeconómico
+afecta la valoración de una empresa, ambas derivables del modelo de descuento de dividendos
+P_t = Σ_s E_t(D_{t+s}) / (1+k)^s: (i) el **canal de flujos de caja**, por el cual el factor altera
+los dividendos o utilidades esperadas E_t(D_{t+s}) —dominante para el precio del cobre, que
+determina los ingresos de una minera—; y (ii) el **canal de la tasa de descuento**, por el cual el
+factor modifica la tasa k a la que se descuentan dichos flujos —relevante para las tasas de interés
+y la prima de riesgo—. En una empresa con elevado **apalancamiento operativo**, como es típico en
+la minería, las variaciones del precio del commodity se amplifican sobre el margen y, por tanto,
+sobre el valor, lo que anticipa una sensibilidad β al cobre elevada.
+
 [COMPLETAR: revisión de literatura reciente (post-2010) sobre factores macro y retornos en
 **mercados emergentes**, que es el contexto más cercano al caso chileno.]
 

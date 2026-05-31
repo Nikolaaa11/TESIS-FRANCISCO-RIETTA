@@ -99,12 +99,25 @@ largo plazo. El procedimiento principal es el **test de bordes ARDL** (Pesaran, 
 2001), por su flexibilidad ante regresores de distinto orden de integración, contrastado con
 el test de **Johansen** sobre el subconjunto claramente I(1) y, a nivel de panel, con el test
 de **Westerlund**. De verificarse cointegración, se estima un **modelo vectorial de corrección
-de error (VECM)**, del que se reportan el vector de largo plazo ($\beta$) y la velocidad de
-ajuste ($\alpha$).
+de error (VECM)** de la forma
+
+> Δy_t = α (β′ y_{t-1}) + Σ_{i=1}^{p-1} Γ_i Δy_{t-i} + μ + ε_t,
+
+donde y_t agrupa las variables en nivel I(1), β′y_{t-1} es el término de corrección de error que
+recoge la desviación respecto del equilibrio de largo plazo, α mide la velocidad con que cada
+variable corrige dicha desviación, y Γ_i captura la dinámica de corto plazo. Adicionalmente, dado
+que las pruebas anteriores suponen una relación estable, se aplica el test de **Gregory-Hansen
+(1996)**, que admite un quiebre estructural endógeno en la relación de cointegración, apropiado
+para un sector sujeto a ciclos pronunciados del commodity.
 
 ### 3.6.4 Dinámica de shocks: VAR, impulso-respuesta y descomposición de varianza (OE4)
 La respuesta dinámica de los retornos a perturbaciones macroeconómicas se analiza mediante un
-modelo **VAR** (o VECM, si las series cointegran). La identificación de los shocks
+modelo **VAR** de orden *p*, y_t = c + Σ_{i=1}^{p} A_i y_{t-i} + u_t, cuya representación de medias
+móviles y_t = μ + Σ_{j=0}^{∞} Φ_j u_{t-j} permite computar las funciones impulso-respuesta. La
+**descomposición de la varianza del error de pronóstico (FEVD)** a horizonte *h* mide la fracción
+de la varianza del error de predicción de cada variable atribuible a cada shock estructural,
+ω_{i←j}(h) = [Σ_{s=0}^{h-1} (e_i′ Θ_s e_j)²] / [Σ_{s=0}^{h-1} (e_i′ Θ_s Θ_s′ e_i)], donde Θ_s son
+los coeficientes de impulso-respuesta ortogonalizados. La identificación de los shocks
 estructurales se realiza por **descomposición de Cholesky**, con un ordenamiento de las
 variables según su grado de exogeneidad —el precio del cobre, determinado en el mercado
 global, se ordena primero, y la acción, como variable más endógena, al final—. Se reportan las

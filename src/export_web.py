@@ -110,6 +110,18 @@ def construir_json():
          "kpss_p": round(float(r["KPSS_p"]), 4), "orden": r["orden_integracion"]}
         for idx, r in tabla.iterrows()]
 
+    # 4. Fusionar hallazgos avanzados (advanced.json + extensions.json) si existen
+    avz = {}
+    for nombre in ("advanced.json", "extensions.json"):
+        f = C.ROOT / "web" / nombre
+        if f.exists():
+            try:
+                avz.update(json.loads(f.read_text(encoding="utf-8")))
+            except Exception:
+                pass
+    if avz:
+        out["avanzado"] = avz
+
     ruta = C.ROOT / "web" / "data.json"
     ruta.parent.mkdir(exist_ok=True)
     ruta.write_text(json.dumps(out, ensure_ascii=False, indent=2), encoding="utf-8")

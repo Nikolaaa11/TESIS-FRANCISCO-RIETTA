@@ -158,6 +158,48 @@ async function main() {
     }
   });
 
+  /* ---- Hallazgos avanzados (tarjetas + 2 gráficos) ---- */
+  const av = d.avanzado;
+  if (av) {
+    const cards = [
+      ['Dependencia de sección cruzada', `CD-Pesaran = ${av.cd_pesaran.stat}`,
+        `p = ${av.cd_pesaran.p} · valida el uso de errores Driscoll-Kraay.`],
+      ['Cointegración con quiebre', `Quiebre en ${av.gregory_hansen.fecha_quiebre}`,
+        `Gregory-Hansen ADF* = ${av.gregory_hansen.gh_adf_stat} < ${av.gregory_hansen.cv_5pct}: relación de largo plazo confirmada (se reconfigura con la crisis de 2008).`],
+      ['Volatilidad condicional (GARCH)', `Persistencia = ${av.garch.persistencia}`,
+        `α=${av.garch.alpha}, β=${av.garch.beta}; efectos ARCH significativos (p=${av.garch.arch_lm_p}). Agrupamiento de volatilidad.`],
+      ['Estabilidad por ciclo (OE5)', `Interacción p = ${av.oe5_interaccion.p_interaccion}`,
+        `La sensibilidad al cobre no difiere de forma significativa entre expansión y contracción.`],
+    ];
+    document.getElementById('adv-grid').innerHTML = cards.map(([t, big, sub]) =>
+      `<div class="card reveal"><h3>${t}</h3>
+        <div style="font-size:28px;font-weight:700;color:#0071e3;margin:6px 0">${big}</div>
+        <p>${sub}</p></div>`).join('');
+
+    if (av.irf) {
+      new Chart('irfChart', {
+        type: 'line',
+        data: { labels: av.irf.h, datasets: [
+          { data: av.irf.resp, borderColor: COPPER, borderWidth: 2, pointRadius: 2, tension: .3, fill: false },
+          { data: av.irf.hi, borderColor: 'rgba(201,113,45,.25)', borderWidth: 1, pointRadius: 0, fill: '+1' },
+          { data: av.irf.lo, borderColor: 'rgba(201,113,45,.25)', borderWidth: 1, pointRadius: 0,
+            backgroundColor: 'rgba(201,113,45,.10)', fill: false } ] },
+        options: { maintainAspectRatio: false, plugins: { legend: { display: false } },
+          scales: { x: { grid: { display: false }, title: { display: true, text: 'Meses' } },
+            y: { grid: { color: LINE } } } }
+      });
+    }
+    const rb = av.robustez_beta_cobre || {};
+    new Chart('robChart', {
+      type: 'bar',
+      data: { labels: Object.keys(rb), datasets: [{ data: Object.values(rb),
+        backgroundColor: [BLUE, COPPER], borderRadius: 8 }] },
+      options: { maintainAspectRatio: false, plugins: { legend: { display: false },
+        tooltip: { callbacks: { label: c => ` β cobre: ${c.parsed.y}` } } },
+        scales: { x: { grid: { display: false } }, y: { grid: { color: LINE }, beginAtZero: true } } }
+    });
+  }
+
   /* ---- 6. Tabla de estacionariedad ---- */
   const st = d.estacionariedad;
   const t = document.getElementById('statTable');

@@ -20,6 +20,7 @@
       <a href="#diseno">Diseño</a>
       <a href="#metodo">Metodología</a>
       <a href="#resultados">Resultados</a>
+      <a href="#avanzado">Avanzado</a>
       <a href="#conclusiones">Conclusiones</a>
     </div>
   </div>
@@ -200,6 +201,32 @@
         <p class="hint">Pruebas de raíz unitaria sobre datos reales del cobre y el tipo de cambio.
           La bifurcación I(0)/I(1) define la estrategia de modelamiento.</p>
         <table class="table" id="statTable"></table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== HALLAZGOS AVANZADOS ===== -->
+<section id="avanzado">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="kicker">Análisis avanzado</div>
+      <h2>Rigor de nivel: diagnósticos, quiebres y volatilidad</h2>
+      <p class="lead">Resultados que elevan la tesis más allá de la regresión base: dependencia de
+        sección cruzada, cointegración con quiebre estructural, volatilidad condicional y robustez
+        temporal — todo sobre datos reales.</p>
+    </div>
+    <div class="grid grid-2" id="adv-grid"></div>
+    <div class="grid grid-2" style="margin-top:20px">
+      <div class="chart-card reveal">
+        <h3>Impulso-respuesta: shock del cobre → retorno</h3>
+        <p class="hint">Respuesta dinámica estimada con el VAR (±2 errores estándar).</p>
+        <div class="chart-wrap"><canvas id="irfChart"></canvas></div>
+      </div>
+      <div class="chart-card reveal">
+        <h3>Robustez: β del cobre por subperíodo</h3>
+        <p class="hint">El efecto del cobre se mantiene y se intensifica tras 2020.</p>
+        <div class="chart-wrap"><canvas id="robChart"></canvas></div>
       </div>
     </div>
   </div>

@@ -29,7 +29,8 @@ TITULO = ("Impacto de las variables macroeconómicas en los retornos accionarios
 
 CAPS = ["introduccion_capitulo1.md", "marco_teorico_capitulo2.md",
         "metodologia_capitulo3.md", "resultados_capitulo4.md",
-        "conclusiones_capitulo5.md", "referencias.md"]
+        "conclusiones_capitulo5.md", "referencias.md",
+        "anexos.md", "glosario.md"]
 
 ABREV = [
     ("APT", "Arbitrage Pricing Theory (teoría de valoración por arbitraje)"),
