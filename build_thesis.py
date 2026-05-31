@@ -33,6 +33,8 @@ TITULO_CORTO = "Macroeconomía y retornos del sector cobre en Chile"
 NAVY = RGBColor(0x1F, 0x38, 0x64)   # azul tinta para encabezados
 RULE = "1F3864"
 GRAY = RGBColor(0x59, 0x59, 0x59)
+BODY_FONT = "Cambria"               # serif moderno para el cuerpo
+HEAD_FONT = "Calibri"               # sans para títulos
 
 CAPS = ["introduccion_capitulo1.md", "marco_teorico_capitulo2.md",
         "metodologia_capitulo3.md", "resultados_capitulo4.md",
@@ -63,15 +65,15 @@ ABREV = [
 # ---------- estilos base ----------
 def set_base_styles(doc):
     st = doc.styles["Normal"]
-    st.font.name = "Times New Roman"; st.font.size = Pt(12)
+    st.font.name = BODY_FONT; st.font.size = Pt(12)
     st.font.color.rgb = RGBColor(0x00, 0x00, 0x00)
     pf = st.paragraph_format
     pf.line_spacing_rule = WD_LINE_SPACING.DOUBLE   # interlineado doble (norma de tesis)
     pf.space_after = Pt(8); pf.alignment = WD_ALIGN_PARAGRAPH.JUSTIFY
     pf.widow_control = True
-    for h, sz in [("Heading 1", 17), ("Heading 2", 13.5), ("Heading 3", 12)]:
+    for h, sz in [("Heading 1", 18), ("Heading 2", 14), ("Heading 3", 12.5)]:
         s = doc.styles[h]
-        s.font.name = "Times New Roman"; s.font.size = Pt(sz); s.font.bold = True
+        s.font.name = HEAD_FONT; s.font.size = Pt(sz); s.font.bold = True
         s.font.color.rgb = NAVY
         s.paragraph_format.keep_with_next = True
         s.paragraph_format.space_before = Pt(14 if h != "Heading 1" else 6)
@@ -79,7 +81,7 @@ def set_base_styles(doc):
     # estilo de leyenda (Caption)
     try:
         cap = doc.styles["Caption"]
-        cap.font.name = "Times New Roman"; cap.font.size = Pt(10); cap.font.italic = True
+        cap.font.name = BODY_FONT; cap.font.size = Pt(10); cap.font.italic = True
         cap.font.color.rgb = GRAY
     except KeyError:
         pass
@@ -87,13 +89,11 @@ def set_base_styles(doc):
 
 def enable_hyphenation(doc):
     el = doc.settings.element
-    for tag in ("w:autoHyphenation", "w:consecutiveHyphenLimit"):
-        node = OxmlElement(tag)
-        if tag.endswith("autoHyphenation"):
-            node.set(qn("w:val"), "true")
-        else:
-            node.set(qn("w:val"), "2")
-        el.append(node)
+    auto = OxmlElement("w:autoHyphenation"); auto.set(qn("w:val"), "true"); el.append(auto)
+    lim = OxmlElement("w:consecutiveHyphenLimit"); lim.set(qn("w:val"), "3"); el.append(lim)
+    # zona de guionado estrecha (~0,25 cm) => justificación más pareja, menos huecos
+    zone = OxmlElement("w:hyphenationZone"); zone.set(qn("w:val"), "142"); el.append(zone)
+    nocap = OxmlElement("w:doNotHyphenateCaps"); nocap.set(qn("w:val"), "true"); el.append(nocap)
 
 
 def _fld(run, instr, default="1"):
@@ -120,14 +120,14 @@ def set_pgnum_format(section, fmt, start=None):
 def footer_pagenum(section):
     section.footer.is_linked_to_previous = False
     p = section.footer.paragraphs[0]; p.alignment = WD_ALIGN_PARAGRAPH.CENTER; p.text = ""
-    run = p.add_run(); _fld(run, "PAGE"); run.font.size = Pt(10); run.font.name = "Times New Roman"
+    run = p.add_run(); _fld(run, "PAGE"); run.font.size = Pt(10); run.font.name = BODY_FONT
 
 
 def running_header(section, text):
     section.header.is_linked_to_previous = False
     p = section.header.paragraphs[0]; p.text = ""; p.alignment = WD_ALIGN_PARAGRAPH.RIGHT
     r = p.add_run(text); r.font.size = Pt(9); r.italic = True
-    r.font.color.rgb = GRAY; r.font.name = "Times New Roman"
+    r.font.color.rgb = GRAY; r.font.name = BODY_FONT
     # filete inferior del encabezado
     pPr = p._p.get_or_add_pPr(); pbdr = OxmlElement("w:pBdr"); pPr.append(pbdr)
     bottom = OxmlElement("w:bottom")
@@ -142,8 +142,8 @@ def field_block(doc, instr, placeholder):
 
 
 def add_runs_with_bold(paragraph, text):
-    # negrita **..**, código `..`, itálica *..*, marca editorial [COMPLETAR..]
-    pat = r"(\*\*.+?\*\*|`[^`]+`|\*[^*\n]+?\*|\[COMPLETAR[^\]]*\])"
+    # negrita **..**, código `..`, matemática inline $..$, itálica *..*, marca [COMPLETAR..]
+    pat = r"(\*\*.+?\*\*|`[^`]+`|\$[^$\n]+\$|\*[^*\n]+?\*|\[COMPLETAR[^\]]*\])"
     for part in re.split(pat, text):
         if not part:
             continue
@@ -151,6 +151,8 @@ def add_runs_with_bold(paragraph, text):
             paragraph.add_run(part[2:-2]).bold = True
         elif part.startswith("`") and part.endswith("`"):
             r = paragraph.add_run(part[1:-1]); r.font.name = "Consolas"; r.font.size = Pt(10.5)
+        elif part.startswith("$") and part.endswith("$"):
+            paragraph.add_run(part[1:-1]).italic = True   # notación matemática
         elif part.startswith("[COMPLETAR"):
             r = paragraph.add_run(part); r.italic = True; r.font.color.rgb = GRAY
         elif len(part) > 2 and part.startswith("*") and part.endswith("*"):
@@ -220,7 +222,7 @@ def add_table(doc, rows):
             cp.alignment = WD_ALIGN_PARAGRAPH.LEFT if j == 0 else WD_ALIGN_PARAGRAPH.CENTER
             add_runs_with_bold(cp, val.replace("**", "") if i == 0 else val)
             for run in cp.runs:
-                run.font.size = Pt(10); run.font.name = "Times New Roman"
+                run.font.size = Pt(10); run.font.name = BODY_FONT
                 if i == 0:
                     run.bold = True
             _cell_pad(c)
@@ -249,10 +251,10 @@ def unwrap_paragraphs(md):
     en los saltos de línea del markdown)."""
     # Línea tras la cual NO se debe anexar (bloque no extensible o vacía):
     def is_break(s):
-        return (not s.strip()) or bool(re.match(r"\s*(#{1,6}\s|\||!\[|>|---)", s))
+        return (not s.strip()) or bool(re.match(r"\s*(#{1,6}\s|\||!\[|>|---|\$\$)", s))
     # Línea de continuación: texto plano que no inicia un nuevo elemento estructural:
     def is_cont(s):
-        return bool(s.strip()) and not re.match(r"\s*(#{1,6}\s|[-*]\s|\d+\.\s|\||!\[|>|---)", s)
+        return bool(s.strip()) and not re.match(r"\s*(#{1,6}\s|[-*]\s|\d+\.\s|\||!\[|>|---|\$\$)", s)
     out = []
     for raw in md.split("\n"):
         s = raw.rstrip()
@@ -279,6 +281,12 @@ def render_markdown(doc, md_text):
         m = re.match(r"!\[(.*?)\]\((.*?)\)", line)
         if m:
             add_figure(doc, m.group(1), m.group(2)); i += 1; continue
+        meq = re.match(r"^\s*\$\$(.+?)\$\$\s*$", line)
+        if meq:
+            p = doc.add_paragraph(); p.alignment = WD_ALIGN_PARAGRAPH.CENTER
+            p.paragraph_format.space_before = Pt(6); p.paragraph_format.space_after = Pt(6)
+            r = p.add_run(meq.group(1).strip()); r.italic = True
+            i += 1; continue
         if line.startswith("# "):
             doc.add_heading(clean_heading(line[2:]), 1); i += 1; continue
         if line.startswith("## "):
@@ -307,7 +315,7 @@ def _no_hyphen(p):
     sup = OxmlElement("w:suppressAutoHyphens"); sup.set(qn("w:val"), "true"); pPr.append(sup)
 
 
-def centered(doc, text, size, bold=False, italic=False, space=6, color=None, font="Times New Roman"):
+def centered(doc, text, size, bold=False, italic=False, space=6, color=None, font=BODY_FONT):
     p = doc.add_paragraph(); p.alignment = WD_ALIGN_PARAGRAPH.CENTER
     p.paragraph_format.space_after = Pt(space); p.paragraph_format.line_spacing = 1.15
     _no_hyphen(p)
@@ -327,8 +335,8 @@ def hrule(doc, color=RULE, sz=12, space=10):
 
 
 def add_cover(doc):
-    centered(doc, "UNIVERSIDAD SAN SEBASTIÁN", 15, bold=True, space=2, color=NAVY)
-    centered(doc, "Facultad de Ingeniería · Magíster en Data Science", 12, space=6, color=GRAY)
+    centered(doc, "UNIVERSIDAD SAN SEBASTIÁN", 16, bold=True, space=2, color=NAVY, font=HEAD_FONT)
+    centered(doc, "Facultad de Ingeniería · Magíster en Data Science", 12, space=6, color=GRAY, font=HEAD_FONT)
     logo = next((c for c in (ROOT/"assets"/"logo_uss.png", ROOT.parent/"tesis-plataforma"/"logo_uss.png")
                  if c.exists()), None)
     if logo:
@@ -337,7 +345,7 @@ def add_cover(doc):
         for _ in range(2):
             doc.add_paragraph()
     hrule(doc, space=18)
-    centered(doc, TITULO, 19, bold=True, space=14, color=RGBColor(0x10,0x10,0x10))
+    centered(doc, TITULO, 20, bold=True, space=14, color=RGBColor(0x10,0x10,0x10), font=HEAD_FONT)
     hrule(doc, space=6)
     centered(doc, "Tesis para optar al grado de Magíster en Data Science", 12.5, italic=True, space=40, color=GRAY)
     for _ in range(3):
@@ -447,7 +455,7 @@ def add_abbrev(doc):
         for c in (c0, c1):
             _cell_pad(c)
             for r in c.paragraphs[0].runs:
-                r.font.size = Pt(11); r.font.name = "Times New Roman"
+                r.font.size = Pt(11); r.font.name = BODY_FONT
 
 
 def _resumen_blocks():

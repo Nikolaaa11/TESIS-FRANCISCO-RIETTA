@@ -33,20 +33,20 @@ función de un vector de factores macroeconómicos y financieros [ver Capítulo 
 Formalmente, bajo la APT el retorno del activo *i* se expresa como una combinación lineal de su
 exposición a *k* factores comunes:
 
-> r_i = E(r_i) + β_{i,1} f_1 + β_{i,2} f_2 + … + β_{i,k} f_k + ε_i,
+$$rᵢ = E(rᵢ) + βᵢ₁ f₁ + βᵢ₂ f₂ + … + βᵢₖ fₖ + εᵢ$$
 
-donde f_j son los factores sistemáticos (no anticipados), β_{i,j} las sensibilidades (cargas
-factoriales) del activo a cada factor, y ε_i un componente idiosincrático diversificable con
-E(ε_i)=0. Ausente el arbitraje, el retorno esperado satisface E(r_i) = r_f + Σ_j β_{i,j} λ_j,
-donde λ_j es el precio de mercado del riesgo asociado al factor j. La contribución empírica de
+donde fⱼ son los factores sistemáticos (no anticipados), βᵢⱼ las sensibilidades (cargas
+factoriales) del activo a cada factor, y εᵢ un componente idiosincrático diversificable con
+E(εᵢ)=0. Ausente el arbitraje, el retorno esperado satisface E(rᵢ) = r_f + Σⱼ βᵢⱼ λⱼ,
+donde λⱼ es el precio de mercado del riesgo asociado al factor j. La contribución empírica de
 esta tesis consiste, precisamente, en estimar las cargas β del sector cobre respecto de un
 conjunto explícito de factores macroeconómicos y financieros, y en contrastar su signo, magnitud
 y significancia.
 
 **Canales de transmisión.** La teoría identifica dos vías por las cuales un factor macroeconómico
 afecta la valoración de una empresa, ambas derivables del modelo de descuento de dividendos
-P_t = Σ_s E_t(D_{t+s}) / (1+k)^s: (i) el **canal de flujos de caja**, por el cual el factor altera
-los dividendos o utilidades esperadas E_t(D_{t+s}) —dominante para el precio del cobre, que
+Pₜ = Σₛ Eₜ(Dₜ₊ₛ) / (1+k)ˢ: (i) el **canal de flujos de caja**, por el cual el factor altera
+los dividendos o utilidades esperadas Eₜ(Dₜ₊ₛ) —dominante para el precio del cobre, que
 determina los ingresos de una minera—; y (ii) el **canal de la tasa de descuento**, por el cual el
 factor modifica la tasa k a la que se descuentan dichos flujos —relevante para las tasas de interés
 y la prima de riesgo—. En una empresa con elevado **apalancamiento operativo**, como es típico en

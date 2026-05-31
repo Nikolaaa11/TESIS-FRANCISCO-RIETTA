@@ -37,7 +37,7 @@ mensual; y (iii) se atenúa el ruido de microestructura propio de los datos diar
 ## 3.2 Variable dependiente
 
 La variable dependiente es el **retorno logarítmico mensual** de cada empresa,
-$r_{i,t} = \ln(P_{i,t}) - \ln(P_{i,t-1})$, calculado sobre precios de cierre **ajustados** por
+$rᵢₜ = ln(Pᵢₜ) − ln(Pᵢ,ₜ₋₁)$, calculado sobre precios de cierre **ajustados** por
 dividendos y splits. Para el análisis agregado de series de tiempo se construye además una
 **cartera del sector**, en sus versiones equiponderada y ponderada por capitalización
 bursátil (con pesos rezagados un período para evitar sesgo de anticipación).
@@ -85,7 +85,7 @@ dichos modelos y se conservan en nivel para el análisis de cointegración.
 ### 3.6.2 Modelo de impacto: panel de efectos fijos (OE2)
 La sensibilidad de los retornos a los factores macro-financieros se estima mediante un
 modelo de **datos de panel con efectos fijos por empresa**:
-$$r_{i,t} = \alpha_i + \beta_1 \Delta cobre_t + \beta_2 \Delta TC_t + \beta_3 \Delta tasa_t + \beta_4 \Delta VIX_t + \gamma' X_{i,t} + \varepsilon_{i,t}$$
+$$rᵢₜ = αᵢ + β₁ Δcobreₜ + β₂ ΔTCₜ + β₃ Δtasaₜ + β₄ ΔVIXₜ + γ′ Xᵢₜ + εᵢₜ$$
 La inferencia emplea errores estándar de **Driscoll-Kraay**, robustos a heterocedasticidad,
 autocorrelación y **dependencia de sección cruzada** —esta última esperable dado el factor
 común que representa el precio del cobre—. Como especificación de referencia se estima en
@@ -101,22 +101,22 @@ el test de **Johansen** sobre el subconjunto claramente I(1) y, a nivel de panel
 de **Westerlund**. De verificarse cointegración, se estima un **modelo vectorial de corrección
 de error (VECM)** de la forma
 
-> Δy_t = α (β′ y_{t-1}) + Σ_{i=1}^{p-1} Γ_i Δy_{t-i} + μ + ε_t,
+$$Δyₜ = α (β′ yₜ₋₁) + Σ Γᵢ Δyₜ₋ᵢ + μ + εₜ$$
 
-donde y_t agrupa las variables en nivel I(1), β′y_{t-1} es el término de corrección de error que
+donde yₜ agrupa las variables en nivel I(1), β′yₜ₋₁ es el término de corrección de error que
 recoge la desviación respecto del equilibrio de largo plazo, α mide la velocidad con que cada
-variable corrige dicha desviación, y Γ_i captura la dinámica de corto plazo. Adicionalmente, dado
+variable corrige dicha desviación, y Γᵢ captura la dinámica de corto plazo. Adicionalmente, dado
 que las pruebas anteriores suponen una relación estable, se aplica el test de **Gregory-Hansen
 (1996)**, que admite un quiebre estructural endógeno en la relación de cointegración, apropiado
 para un sector sujeto a ciclos pronunciados del commodity.
 
 ### 3.6.4 Dinámica de shocks: VAR, impulso-respuesta y descomposición de varianza (OE4)
 La respuesta dinámica de los retornos a perturbaciones macroeconómicas se analiza mediante un
-modelo **VAR** de orden *p*, y_t = c + Σ_{i=1}^{p} A_i y_{t-i} + u_t, cuya representación de medias
-móviles y_t = μ + Σ_{j=0}^{∞} Φ_j u_{t-j} permite computar las funciones impulso-respuesta. La
+modelo **VAR** de orden *p*, yₜ = c + Σᵢ Aᵢ yₜ₋ᵢ + uₜ, cuya representación de medias
+móviles yₜ = μ + Σⱼ Φⱼ uₜ₋ⱼ permite computar las funciones impulso-respuesta. La
 **descomposición de la varianza del error de pronóstico (FEVD)** a horizonte *h* mide la fracción
 de la varianza del error de predicción de cada variable atribuible a cada shock estructural,
-ω_{i←j}(h) = [Σ_{s=0}^{h-1} (e_i′ Θ_s e_j)²] / [Σ_{s=0}^{h-1} (e_i′ Θ_s Θ_s′ e_i)], donde Θ_s son
+ωᵢ←ⱼ(h) = [Σₛ (eᵢ′ Θₛ eⱼ)²] / [Σₛ (eᵢ′ Θₛ Θₛ′ eᵢ)], donde Θ_s son
 los coeficientes de impulso-respuesta ortogonalizados. La identificación de los shocks
 estructurales se realiza por **descomposición de Cholesky**, con un ordenamiento de las
 variables según su grado de exogeneidad —el precio del cobre, determinado en el mercado

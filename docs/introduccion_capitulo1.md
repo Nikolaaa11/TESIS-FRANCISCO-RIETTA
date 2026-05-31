@@ -20,6 +20,18 @@ cobre en una variable macroeconómica de primer orden para Chile, con efectos am
 documentados sobre el tipo de cambio, las cuentas externas y el ciclo económico nacional (Labbé y
 De Gregorio, 2011; Pedersen, 2015).
 
+Esta centralidad es el resultado de una larga trayectoria histórica. Desde el auge cuprífero del
+Norte Chico en el siglo XIX hasta la consolidación de la gran minería en el siglo XX, el cobre fue
+adquiriendo un peso creciente que culminó, en el plano institucional, con la nacionalización del
+cobre de 1971 y la posterior creación de la Corporación Nacional del Cobre (Codelco) en 1976. Ya en
+el siglo XXI, el súper-ciclo de los commodities de la década de 2000, impulsado por la demanda
+industrial de China, reafirmó al cobre como motor de los ingresos fiscales y de la actividad
+exportadora, a la vez que expuso a la economía chilena a la volatilidad de los mercados
+internacionales del metal. Una historia económica más detallada se recoge en el material
+complementario de la investigación. Este trasfondo histórico explica por qué la valoración de las
+empresas del sector constituye un termómetro especialmente sensible de las condiciones
+macroeconómicas globales y locales.
+
 En el plano financiero, las empresas dedicadas a la extracción y procesamiento de cobre
 constituyen un sector cuya valoración bursátil está, en principio, estrechamente ligada a la
 evolución del precio del metal y a las condiciones macroeconómicas globales y locales. Sin
