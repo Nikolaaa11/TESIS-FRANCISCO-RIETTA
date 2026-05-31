@@ -1,7 +1,7 @@
 # Tesis — Impacto de variables macroeconómicas globales y financieras en la valoración bursátil del sector minería de cobre en Chile
 
-Magíster en Data Science. Enfoque **explicativo / de medición de impacto** (no predictivo),
-con econometría de series de tiempo y datos de panel aplicada en Python.
+Universidad Señor de Sipán (Pimentel, Perú). Enfoque **explicativo / de medición de impacto**
+(no predictivo), con econometría de series de tiempo y datos de panel aplicada en Python.
 
 ## Estructura del proyecto
 

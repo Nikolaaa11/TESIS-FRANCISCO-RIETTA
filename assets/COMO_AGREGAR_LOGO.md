@@ -1,4 +1,4 @@
-# Cómo agregar el logo de la Universidad San Sebastián
+# Cómo agregar el logo de la Universidad Señor de Sipán
 
 La portada (`docs/portada.md`) ya está lista y **referencia el logo** en `assets/logo_uss.png`.
 Solo falta depositar el archivo de imagen (no se puede guardar desde el chat).
@@ -28,5 +28,5 @@ from IPython.display import Image
 Image('../assets/logo_uss.png', width=150)
 ```
 
-> Nota de uso: el logo institucional es propiedad de la Universidad San Sebastián; empléalo solo
+> Nota de uso: el logo institucional es propiedad de la Universidad Señor de Sipán; empléalo solo
 > conforme a las normas gráficas de la universidad para documentos académicos.

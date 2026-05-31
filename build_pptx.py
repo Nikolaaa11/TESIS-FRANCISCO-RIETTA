@@ -100,7 +100,7 @@ def img(slide, path, x, y, w):
 
 def footer(slide, n):
     textbox(slide, Inches(0.7), Inches(7.0), Inches(8), Inches(0.4),
-            "Impacto macroeconómico en el sector cobre · USS · Magíster en Data Science",
+            "Impacto macroeconómico en el sector cobre · Universidad Señor de Sipán",
             10, INK2, font="Calibri")
     textbox(slide, Inches(12.2), Inches(7.0), Inches(0.8), Inches(0.4),
             str(n), 10, INK2, align=PP_ALIGN.RIGHT, font="Calibri")

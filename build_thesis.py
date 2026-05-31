@@ -370,8 +370,8 @@ def page(doc): doc.add_page_break()
 def add_approval(doc):
     doc.add_heading("Página de aprobación", 1)
     p = doc.add_paragraph(); add_runs_with_bold(p, "La presente tesis ha sido revisada y aprobada por "
-        "la comisión examinadora abajo firmante, como requisito para optar al grado de Magíster en "
-        "Data Science de la Universidad San Sebastián.")
+        "la comisión examinadora abajo firmante, como requisito para optar el título profesional / grado "
+        "académico de [Grado o Título] en la Universidad Señor de Sipán.")
     for rol in ["Profesor guía", "Profesor informante", "Director(a) del programa"]:
         doc.add_paragraph()
         l = doc.add_paragraph("__________________________________"); l.alignment = WD_ALIGN_PARAGRAPH.CENTER

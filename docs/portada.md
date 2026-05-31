@@ -1,10 +1,12 @@
 <div align="center">
 
-<img src="../assets/logo_uss.png" alt="Universidad San Sebastián" width="150"/>
+<img src="../assets/logo_uss.png" alt="Universidad Señor de Sipán" width="150"/>
 
-# UNIVERSIDAD SAN SEBASTIÁN
+# UNIVERSIDAD SEÑOR DE SIPÁN
 
-### Magíster en Data Science
+### FACULTAD DE [Facultad]
+
+### ESCUELA PROFESIONAL DE [Escuela / Programa]
 
 <br>
 
@@ -14,16 +16,18 @@
 
 <br><br>
 
-Tesis para optar al grado de Magíster en Data Science
+Tesis para optar el título profesional / grado académico de [Grado o Título]
 
 <br>
 
-**Autor:** [Nombre del estudiante]
+**Autor(es):** Rietta Francisco
 
-**Profesor guía:** [Nombre del profesor]
+**Asesor:** [Grado académico. Apellidos y Nombres del asesor]
+
+**Línea de Investigación:** [Línea aprobada por la Escuela]
 
 <br><br>
 
-[Ciudad], Chile — [Año]
+Pimentel — Perú, 2026
 
 </div>

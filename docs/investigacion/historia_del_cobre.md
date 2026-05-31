@@ -1,6 +1,6 @@
 # Historia económica del cobre en Chile
 
-> Documento de contexto para la tesis de Magíster en Data Science *"Impacto macroeconómico en las acciones de empresas de cobre en Chile"*. Todas las cifras y fechas provienen de las fuentes listadas al final; las afirmaciones sin respaldo cuantitativo verificable se mantienen en términos cualitativos o se marcan con [verificar].
+> Documento de contexto para la tesis *"Impacto de las variables macroeconómicas en los retornos accionarios de las empresas de cobre con exposición a Chile"* (Universidad Señor de Sipán). Todas las cifras y fechas provienen de las fuentes listadas al final; las afirmaciones sin respaldo cuantitativo verificable se mantienen en términos cualitativos o se marcan con [verificar].
 
 ## 1. Resumen e importancia para la tesis
 
