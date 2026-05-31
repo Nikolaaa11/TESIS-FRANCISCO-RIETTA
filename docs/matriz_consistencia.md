@@ -64,3 +64,22 @@ Todo el análisis (OE2–OE5) se ejecuta en paralelo sobre **tres muestras** y s
 | 4.6 Comparación entre mercados (global vs chileno) | OE6 | PI6, H7 |
 
 > **Regla de oro de coherencia:** ningún objetivo sin su sección de resultados; ninguna hipótesis sin su prueba; ninguna variable sin su fuente (ver `src/config.py`).
+
+## 5. Veredicto empírico (síntesis)
+
+Resultado del contraste de cada hipótesis sobre los datos (preliminar en cuanto a magnitudes; ver Cap. 4).
+
+| H | Veredicto | Evidencia / prueba |
+|---|-----------|--------------------|
+| **H1** | Respaldada | β cobre +0,57\*\*\*; robusta a corrección FDR y a subperíodos (0,56→0,75). |
+| **H2** | Respaldada (signo −) | ΔTC −1,57\*\*\*; capta competitividad y riesgo. |
+| **H3** | No respaldada | Tasa local y externa no significativas en la especificación base. |
+| **H4** | Respaldada | VIX negativo y significativo; mayor efecto estandarizado (−0,31 σ). |
+| **H5** | Respaldada con quiebre | Gregory-Hansen: cointegración con quiebre en 2008 (ADF\* = −6,68). |
+| **H6** | Respaldada | FEVD: global ≈ 32% vs local ≈ 5%; jerarquía de betas estandarizados. |
+| **H7** | Respaldada | Interacción d_cobre × global = +0,25 (p = 0,01); mayor sensibilidad internacional. |
+
+**Diagnósticos de soporte:** CD-Pesaran (dependencia cruzada → Driscoll-Kraay); CIPS (precios I(1),
+retornos I(0)); estabilidad del VAR y Granger; GJR-GARCH (apalancamiento); Local Projections
+(cross-validación de la IRF); razón de varianzas de Lo-MacKinlay (eficiencia débil accionaria). La
+síntesis completa figura en el Anexo J.
