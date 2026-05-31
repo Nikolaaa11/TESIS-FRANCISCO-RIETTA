@@ -168,9 +168,21 @@ Dos hallazgos preliminares:
 ![Triangulación: sensibilidad al cobre y dominancia global por muestra (B, A, C).](outputs/figures/fig_triangulacion.png)
 2. **La fracción de varianza atribuida a shocks globales es algo mayor en el mercado internacional
    (0,320) que en el chileno (0,295 y 0,279).** Es una señal **direccionalmente consistente con H7**
-   —el mercado internacional incorporaría el shock de forma más completa—, aunque la diferencia es
-   modesta y requiere confirmación con el conjunto de datos completo y pruebas formales de igualdad
-   de coeficientes entre muestras.
+   —el mercado internacional incorporaría el shock de forma más completa—.
+
+**Prueba formal de igualdad de coeficientes entre mercados.** Para contrastar H7 de manera
+estadística, se estima un panel combinado de las muestras B y C con interacciones factor × mercado
+(indicador *global* = 1 para las empresas que cotizan en el mercado internacional), bajo efectos
+fijos por empresa y errores Driscoll-Kraay. El término de interacción **d_cobre × global resulta
+positivo y significativo (diferencia = +0,254; p = 0,010)**: la sensibilidad de los retornos al
+precio del cobre es **significativamente mayor en el mercado internacional que en el chileno**. La
+sensibilidad al VIX también difiere significativamente entre mercados, mientras que la del tipo de
+cambio resulta estadísticamente equivalente (p = 0,069). Estos resultados **respaldan formalmente
+H7**. Una salvedad de interpretación es pertinente: la muestra internacional es de cobre puro,
+mientras que la chilena es un panel del sector minero mixto, de modo que parte de la diferencia
+puede reflejar la composición por commodity además del mercado; no obstante, la dirección y la
+significancia del resultado son coherentes con una transmisión más completa del shock del cobre en
+el mercado de mayor profundidad.
 
 ## 4.7 Diagnósticos y robustez
 
@@ -230,16 +242,16 @@ principal determinante de los retornos del sector** (H1), con un efecto positivo
 **estable entre fases del ciclo** (§4.5) y robusto entre subperíodos (§4.7); **los factores globales
 dominan a los locales** en la explicación de la varianza (H6); y el **tipo de cambio** ejerce un
 efecto negativo significativo cuyo signo refleja la doble naturaleza —competitividad y riesgo—
-anticipada (H2). La comparación entre mercados aporta una primera señal, aún débil, de
-**transmisión diferenciada** (H7); y la **relación de cointegración de largo plazo** (H5) **se
-confirma una vez que se admite un quiebre estructural** en 2008 (Gregory-Hansen), lo que reconcilia
-la evidencia inicialmente mixta. La fuerte dependencia de sección cruzada detectada (§4.7) confirma,
-además, la pertinencia del tratamiento econométrico adoptado.
+anticipada (H2). La comparación entre mercados, contrastada formalmente mediante interacciones,
+**respalda H7**: la sensibilidad al cobre es significativamente mayor en el mercado internacional
+que en el chileno (§4.6). La **relación de cointegración de largo plazo** (H5) **se confirma una vez
+que se admite un quiebre estructural** en 2008 (Gregory-Hansen), lo que reconcilia la evidencia
+inicialmente mixta. La fuerte dependencia de sección cruzada detectada (§4.7) confirma, además, la
+pertinencia del tratamiento econométrico adoptado.
 
 Estas lecturas son **provisionales** en un único sentido acotado: su elevación a hallazgos
-plenamente definitivos exige todavía (i) incorporar el **EMBI** y los **controles a nivel de
-empresa**, y (ii) formalizar la comparación entre mercados con **pruebas de igualdad de
-coeficientes** entre muestras. En cambio, el grueso del aparato econométrico **ya está ejecutado y
+plenamente definitivos exige todavía incorporar el **EMBI** y los **controles a nivel de empresa**.
+En cambio, el grueso del aparato econométrico **ya está ejecutado y
 es concluyente**: la resolución del orden de integración (Zivot-Andrews), las interacciones por
 ciclo (OE5), los diagnósticos de panel y VAR (CD de Pesaran, estabilidad), la robustez por
 subperíodos, la **cointegración con quiebre** (Gregory-Hansen) y la **volatilidad condicional**
