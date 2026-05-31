@@ -1,0 +1,37 @@
+{
+  "zivot_andrews": {
+    "cobre_nivel": {
+      "stat": -4.3534,
+      "p": 0.1697
+    },
+    "tc_nivel": {
+      "stat": -2.8292,
+      "p": 0.9504
+    },
+    "tc_dif": {
+      "stat": -4.5894,
+      "p": 0.0947
+    }
+  },
+  "oe5_interaccion": {
+    "beta_cobre_base": 0.6299,
+    "beta_cobre_x_exp": 0.0828,
+    "p_interaccion": 0.6267,
+    "interpretacion": "beta_cobre en contracción = base; en expansión = base + interacción"
+  },
+  "cd_pesaran": {
+    "stat": 24.5049,
+    "p": 0.0,
+    "conclusion": "dependencia de sección cruzada significativa"
+  },
+  "var_diag": {
+    "rezagos_aic": 1,
+    "estable": true,
+    "granger_cobre_retorno_F": 9.112,
+    "granger_cobre_retorno_p": 0.0026
+  },
+  "robustez_beta_cobre": {
+    "2004-2019": 0.5594,
+    "2020-2024": 0.7509
+  }
+}

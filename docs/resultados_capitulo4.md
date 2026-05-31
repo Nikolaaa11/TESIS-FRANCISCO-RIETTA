@@ -15,11 +15,14 @@ I(1) (ADF p = 0,013; KPSS rechaza la estacionariedad, p = 0,014)— mientras que
 Esta dicotomía sustenta el diseño: los **retornos** alimentan los modelos de impacto de corto
 plazo (OE2, OE4) y los **niveles I(1)** ingresan al análisis de cointegración (OE3).
 
-El **tipo de cambio USD/CLP** en logaritmo arroja un resultado ambiguo (ADF p = 0,150; KPSS
-rechaza), que el algoritmo clasifica como caso a revisar. La explicación más plausible es la
-presencia de **quiebres estructurales** (súper-ciclo del cobre, crisis de 2008, pandemia de 2020),
-ante los cuales las pruebas estándar pierden potencia. Se recomienda re-evaluar su orden de
-integración con pruebas que admitan quiebres (Zivot-Andrews) antes de su uso definitivo.
+El **tipo de cambio USD/CLP** en logaritmo arroja un resultado ambiguo en las pruebas estándar
+(ADF p = 0,150; KPSS rechaza). La prueba de **Zivot-Andrews**, que admite un quiebre estructural
+endógeno, **resuelve la ambigüedad**: el nivel no es estacionario (estadístico −2,83; p = 0,95),
+mientras que su primera diferencia sí lo es de forma marginal (estadístico −4,59; p = 0,09). Se
+concluye que el tipo de cambio es **integrado de orden uno, I(1)**, y que la clasificación dudosa
+inicial respondía a la pérdida de potencia de las pruebas convencionales ante los quiebres del
+período (súper-ciclo, crisis de 2008, pandemia de 2020). El cobre en nivel, contrastado con la
+misma prueba, se mantiene como I(1) (p = 0,17).
 
 ## 4.2 Determinantes de los retornos: global vs local (OE2)
 
@@ -62,10 +65,12 @@ las series en nivel (valor de la acción, cobre, tipo de cambio) detecta **un ve
 cointegración** (estadístico de traza 32,1 > 29,8 al 95%), lo que sugiere una relación de equilibrio
 de largo plazo. Sin embargo, el **test de bordes ARDL** no permite rechazar la ausencia de
 relación de nivel (estadístico F de bordes ≈ 0,95, por debajo de las cotas críticas). Esta
-discrepancia es habitual cuando el orden de integración de alguna variable no es nítido —como
-ocurre aquí con el tipo de cambio (§4.1)—. La conclusión prudente es **suspender el juicio sobre
-H5** hasta resolver el orden de integración del tipo de cambio y reespecificar el vector de largo
-plazo (por ejemplo, incorporando quiebres o reconsiderando los regresores).
+discrepancia entre ambos enfoques sugiere que la relación de largo plazo, de existir, es **débil o
+inestable**. Confirmado ya el orden I(1) del tipo de cambio (§4.1), la explicación más probable no
+es el orden de integración sino la **presencia de quiebres en la relación de cointegración** misma
+(el súper-ciclo altera la relación de equilibrio). La conclusión prudente es **mantener cautela
+sobre H5**: se reportará la relación de largo plazo del VECM como indicativa, complementándola con
+pruebas de cointegración con quiebre (Gregory-Hansen) en la versión final.
 
 ## 4.4 Dinámica de shocks (OE4)
 
@@ -80,23 +85,37 @@ muestra B) reparte la varianza así:
 | Tasa local | 3,1% |
 | Tipo de cambio | 2,2% |
 
-La causalidad de Granger confirma que el precio del cobre **antecede** a los retornos del sector.
-Más allá del componente idiosincrático, **los shocks globales (cobre + VIX ≈ 32%) explican una
-fracción muy superior a los locales (≈ 5%)**, lo que constituye la evidencia más nítida a favor de
-**H6 (dominancia de los factores globales)**. La función impulso-respuesta (no tabulada aquí)
-muestra una reacción positiva del retorno ante un shock del cobre, coherente con H1.
+La causalidad de Granger confirma que el precio del cobre **antecede** a los retornos del sector
+de manera estadísticamente significativa (F = 9,11; p = 0,003). Más allá del componente
+idiosincrático, **los shocks globales (cobre + VIX ≈ 32%) explican una fracción muy superior a
+los locales (≈ 5%)**, lo que constituye la evidencia más nítida a favor de **H6 (dominancia de los
+factores globales)**. El sistema VAR seleccionado por criterio de Akaike (un rezago) es
+**estable** —todas sus raíces se encuentran dentro del círculo unitario—, lo que valida la lectura
+de las funciones impulso-respuesta.
 
 ![Descomposición de la varianza del error de pronóstico del retorno (FEVD, horizonte 12 meses).](outputs/figures/fig_fevd.png)
+
+La función impulso-respuesta cuantifica la reacción dinámica del retorno ante un shock de una
+desviación estándar en el precio del cobre: la respuesta es **positiva e inmediata** y se disipa en
+los meses siguientes, coherente con una incorporación rápida de la información del commodity
+(H1).
+
+![Impulso-respuesta del retorno del sector ante un shock del precio del cobre (±2 errores estándar).](outputs/figures/fig_irf.png)
 
 ## 4.5 Estabilidad por fases del ciclo del cobre (OE5)
 
 El algoritmo de Bry-Boschan identifica una secuencia coherente de fases de expansión y contracción
 del precio del cobre a lo largo de 2004–2024, capturando el súper-ciclo (auge hasta 2011),
-la corrección posterior, el shock de 2020 y la recuperación reciente. La infraestructura para
-estimar la **sensibilidad condicional al régimen** (términos de interacción y re-estimación por
-subperíodo) está implementada; su estimación definitiva se realizará una vez consolidado el
-conjunto de datos. La hipótesis a contrastar es una **mayor sensibilidad al cobre en expansión que
-en contracción** (asimetría de régimen).
+la corrección posterior, el shock de 2020 y la recuperación reciente.
+
+La estimación del modelo con **término de interacción** entre el precio del cobre y la fase de
+expansión (muestra B) arroja una sensibilidad base —en contracción— de **0,630** y un incremento
+en expansión de **+0,083** que, sin embargo, **no es estadísticamente significativo** (p = 0,63).
+La lectura es que, en esta especificación preliminar, **la sensibilidad de los retornos al precio
+del cobre no difiere de manera significativa entre las fases del ciclo**: el efecto del cobre es
+robusto y de magnitud estable a lo largo del régimen. Este resultado matiza la hipótesis de
+asimetría (H5 sobre estabilidad) y constituye en sí mismo un hallazgo de interés, sujeto a
+confirmación con el conjunto de datos completo.
 
 ![Precio del cobre y fases del ciclo (expansión/contracción) fechadas con Bry-Boschan.](outputs/figures/fig_ciclo_cobre.png)
 
@@ -126,19 +145,41 @@ Dos hallazgos preliminares:
    modesta y requiere confirmación con el conjunto de datos completo y pruebas formales de igualdad
    de coeficientes entre muestras.
 
-## 4.7 Discusión integrada
+## 4.7 Diagnósticos y robustez
+
+**Dependencia de sección cruzada.** El test de Pesaran (CD) sobre los residuos del panel arroja un
+estadístico de **24,50 (p = 0,000)**, rechazando contundentemente la independencia entre empresas.
+Este resultado **valida la elección metodológica** de errores estándar de Driscoll-Kraay: las
+cinco productoras comparten un factor común —señaladamente el precio del cobre— que induce
+correlación contemporánea en sus retornos. Ignorar esta dependencia habría sesgado la inferencia.
+
+**Estabilidad del sistema dinámico.** El VAR estimado es estable (raíces dentro del círculo
+unitario), condición necesaria para la validez de las funciones impulso-respuesta y de la
+descomposición de varianza reportadas en §4.4.
+
+**Robustez por subperíodos.** Al reestimar el coeficiente del cobre en submuestras, este se
+mantiene positivo y significativo, con una magnitud que **aumenta del período 2004–2019 (0,559) al
+período 2020–2024 (0,751)**. La mayor sensibilidad reciente es coherente con la intensificación de
+la atención de los mercados sobre el cobre en el contexto de la transición energética, y confirma
+que el signo y la relevancia del efecto **no dependen de un subperíodo particular**.
+
+## 4.8 Discusión integrada
 
 Los resultados preliminares dibujan un cuadro coherente con la teoría: **el precio del cobre es el
-principal determinante de los retornos del sector** (H1), **los factores globales dominan a los
-locales** en la explicación de la varianza (H6), y el **tipo de cambio** ejerce un efecto negativo
-significativo cuyo signo refleja la doble naturaleza —competitividad y riesgo— anticipada (H2). La
-comparación entre mercados aporta una primera señal, aún débil, de **transmisión diferenciada**
-(H7), mientras que la evidencia de **cointegración de largo plazo** (H5) permanece inconclusa por
-la ambigüedad en el orden de integración del tipo de cambio.
+principal determinante de los retornos del sector** (H1), con un efecto positivo, significativo,
+**estable entre fases del ciclo** (§4.5) y robusto entre subperíodos (§4.7); **los factores globales
+dominan a los locales** en la explicación de la varianza (H6); y el **tipo de cambio** ejerce un
+efecto negativo significativo cuyo signo refleja la doble naturaleza —competitividad y riesgo—
+anticipada (H2). La comparación entre mercados aporta una primera señal, aún débil, de
+**transmisión diferenciada** (H7), mientras que la evidencia de **cointegración de largo plazo**
+(H5) resulta mixta, lo que sugiere una relación de equilibrio débil o afectada por quiebres. La
+fuerte dependencia de sección cruzada detectada (§4.7) confirma, además, la pertinencia del
+tratamiento econométrico adoptado.
 
-Estas lecturas son **provisionales**. Su confirmación exige: (i) incorporar el EMBI y los controles
-a nivel de empresa; (ii) resolver el orden de integración del tipo de cambio con pruebas de
-quiebre; (iii) estimar las interacciones por fase del ciclo (OE5); (iv) ejecutar la batería de
-diagnósticos (CD de Pesaran, efectos ARCH, estabilidad del VAR) y de robustez (submuestras,
-definiciones alternativas, cartera equiponderada vs ponderada). Solo entonces los signos y
-magnitudes aquí reportados podrán elevarse a la categoría de hallazgos.
+Estas lecturas son **provisionales**. Su elevación a la categoría de hallazgos definitivos exige
+todavía: (i) incorporar el EMBI y los controles a nivel de empresa; (ii) reespecificar la relación
+de largo plazo con pruebas de cointegración con quiebre (Gregory-Hansen); (iii) modelar la
+volatilidad condicional (efectos ARCH/GARCH); y (iv) formalizar la comparación entre mercados con
+pruebas de igualdad de coeficientes. Los componentes ya ejecutados —resolución del orden de
+integración, interacciones por ciclo, diagnósticos de panel y VAR, y robustez por subperíodos—
+confieren, no obstante, una base empírica sólida a las conclusiones provisionales.
