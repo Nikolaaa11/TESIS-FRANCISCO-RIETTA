@@ -65,6 +65,9 @@ python build_thesis.py         # regenera el documento Word/PDF (requiere Word)
 robustez FDR/GJR/Local Projections, predictor, Hausman, CIPS, comparación de mercados → datos web,
 figuras y anexos) con manejo de errores y resumen. Cada resultado de la tesis es reproducible.
 
+**Pruebas unitarias** (datos sintéticos, sin red): `python -m pytest -q` valida las funciones
+econométricas clave (estacionariedad, fechado del ciclo, transformaciones, panel de efectos fijos).
+
 ## Diseño: triangulación por tres muestras
 
 Ver `docs/diseno_triangulacion.md`. El universo se organiza en tres muestras comparables:
