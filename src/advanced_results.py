@@ -128,7 +128,7 @@ def construir():
                   "lo": [round(float(v), 5) for v in (resp - 2*se)],
                   "hi": [round(float(v), 5) for v in (resp + 2*se)]}
 
-    (C.ROOT / "web" / "advanced.json").write_text(
+    (C.WEB_DATA / "advanced.json").write_text(
         json.dumps(out, ensure_ascii=False, indent=2), encoding="utf-8")
     print(json.dumps(out, ensure_ascii=False, indent=2))
     print("[ok] fig_irf.png + advanced.json")

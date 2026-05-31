@@ -177,8 +177,32 @@ varianza con un GARCH(1,1). El modelo estimado sobre los retornos de la cartera 
 **persistencia de la volatilidad de 0,86** (α = 0,15; β = 0,70), indicativa de **agrupamiento de
 volatilidad**: los episodios de alta volatilidad —como las crisis— tienden a prolongarse. La
 distribución t estimada (ν ≈ 12) confirma además la presencia de **colas más pesadas** que la
-normal, característica de los retornos financieros. Este resultado respalda la decisión de
-winsorizar y de tratar con cautela la inferencia basada en supuestos gaussianos.
+normal, característica de los retornos financieros. La extensión a un modelo asimétrico
+**GJR-GARCH** revela un **efecto apalancamiento** estadísticamente significativo (γ = 0,22;
+p = 0,023), preferido por el criterio BIC: las caídas del retorno elevan la volatilidad futura más
+que las alzas de igual magnitud, un patrón habitual en los mercados accionarios.
+
+**Corrección por pruebas múltiples.** Dado que el contraste de las hipótesis involucra la
+estimación simultánea de numerosos coeficientes, se aplica la corrección de **Benjamini-Hochberg
+(control de la tasa de falsos descubrimientos, FDR)** sobre los p-valores del panel. Tras la
+corrección, **el precio del cobre, el VIX y el tipo de cambio conservan su significancia**
+(p-valores ajustados de 0,000, 0,000 y 0,000, respectivamente), mientras que los factores ya no
+significativos se mantienen como tales. Los hallazgos centrales no son, por tanto, artefactos de
+pruebas múltiples.
+
+**Magnitudes económicas (betas estandarizados).** Expresado en desviaciones estándar, el factor de
+mayor impacto sobre el retorno es el **riesgo global (VIX, −0,31 σ)**, seguido muy de cerca por el
+**precio del cobre (+0,29 σ)** y, a mayor distancia, el tipo de cambio (−0,13 σ). Esta jerarquía
+—dos factores globales en la cúspide— constituye evidencia económica, y no solo estadística, a
+favor de la dominancia de los factores internacionales (H6).
+
+**Local Projections.** Como alternativa al VAR, más robusta a la mala especificación, se estima la
+respuesta del retorno a un shock del cobre mediante **proyecciones locales (Jordà, 2005)** con
+errores estándar HAC horizonte a horizonte. La respuesta estimada (0,68 en el impacto, con
+decaimiento posterior) **coincide cualitativamente con la función impulso-respuesta del VAR**, lo
+que refuerza la robustez de la dinámica reportada en §4.4.
+
+![Respuesta del retorno a un shock del cobre mediante proyecciones locales (Jordà, 2005), IC 95%.](outputs/figures/fig_lp.png)
 
 ## 4.8 Discusión integrada
 

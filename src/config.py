@@ -26,7 +26,13 @@ OUTPUTS = ROOT / "outputs"
 FIGURES = OUTPUTS / "figures"
 TABLES = OUTPUTS / "tables"
 
-for _p in (DATA_RAW, DATA_INTERIM, DATA_PROCESSED, FIGURES, TABLES):
+# La PLATAFORMA web es un PROYECTO SEPARADO en otro repositorio (carpeta hermana).
+# El pipeline de la tesis escribe los datos (JSON) hacia esa carpeta para mantener
+# ambos proyectos desacoplados. Si no existe, cae a outputs/web_data/ localmente.
+PLATFORM_DIR = ROOT.parent / "tesis-plataforma"
+WEB_DATA = PLATFORM_DIR if PLATFORM_DIR.exists() else (OUTPUTS / "web_data")
+
+for _p in (DATA_RAW, DATA_INTERIM, DATA_PROCESSED, FIGURES, TABLES, WEB_DATA):
     _p.mkdir(parents=True, exist_ok=True)
 
 # ------------------------------------------------------------------

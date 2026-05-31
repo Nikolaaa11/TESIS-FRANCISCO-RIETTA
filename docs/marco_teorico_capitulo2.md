@@ -53,8 +53,15 @@ y la prima de riesgo—. En una empresa con elevado **apalancamiento operativo**
 la minería, las variaciones del precio del commodity se amplifican sobre el margen y, por tanto,
 sobre el valor, lo que anticipa una sensibilidad β al cobre elevada.
 
-[COMPLETAR: revisión de literatura reciente (post-2010) sobre factores macro y retornos en
-**mercados emergentes**, que es el contexto más cercano al caso chileno.]
+La evidencia reciente confirma la vigencia de este enfoque en **mercados emergentes**, contexto
+más cercano al caso chileno. Diversos estudios que contrastan el APT frente al CAPM en bolsas
+emergentes hallan que el primero se sostiene mejor y que el **tipo de cambio** explica de manera
+consistente los retornos. Específicamente para Chile, Pedersen (2015), en un documento de trabajo
+del Banco Central de Chile, muestra que el efecto del precio del cobre sobre la economía depende
+del **tipo de shock** —las alzas por demanda elevan el crecimiento, mientras que los shocks de
+oferta o de demanda específica del cobre tienen efectos negativos de corto plazo—, lo que motiva
+distinguir la naturaleza de las perturbaciones. Este hallazgo es directamente relevante para la
+identificación de shocks de la presente tesis.
 
 ## 2.2 Precios de commodities y valoración de empresas mineras
 
@@ -69,10 +76,17 @@ sensibilidad de los retornos de empresas de energía al precio del petróleo, y 
 incorporando conjuntamente el precio del commodity, el tipo de cambio y las tasas de interés.
 La estructura metodológica de estos trabajos es directamente trasladable al caso del cobre.
 
-La evidencia específica sobre **acciones mineras y precios de metales** es comparativamente más
-escasa que la del sector energético, lo que constituye parte del vacío que esta tesis aborda.
-[COMPLETAR: estudios sobre exposición de acciones mineras al precio del cobre u otros metales;
-distinguir exposición a precio spot vs. futuros.]
+La evidencia específica sobre **acciones mineras y precios de metales** es más reciente y
+predominantemente internacional. Zhu, Chen y Chen (2021), en *Resources Policy*, documentan que los
+precios de los metales no ferrosos tienen un impacto positivo sobre la valoración bursátil del
+sector, con efectos que se intensifican tras la crisis financiera de 2008 (financiarización y
+co-movimiento de los mercados de commodities). Wallenstein, Mendiola y Chávez-Bedoya, en el marco
+de la CLADEA, encuentran una relación positiva pero **inelástica** entre los retornos de acciones
+cupríferas y el precio del cobre, más fuerte en empresas de gran capitalización. La literatura
+reciente en *Mineral Economics* (2025) modela, mediante ecuaciones estructurales, el vínculo entre
+los precios del cobre y del oro y las cotizaciones mineras en las bolsas de Nueva York, Toronto y
+Australia. Es notable que esta literatura, pese a su relevancia, **excluye sistemáticamente a
+Chile** —primer productor mundial de cobre—, omisión que la presente investigación subsana.
 
 ## 2.3 Tipo de cambio y exposición de empresas exportadoras
 
@@ -103,12 +117,31 @@ conjunta del precio del cobre y del tipo de cambio entre los determinantes del v
 y motiva la pregunta sobre la **dominancia relativa de los factores globales frente a los
 locales**.
 
-[COMPLETAR — NÚCLEO DEL APORTE: evidencia empírica chilena sobre la relación cobre–peso–mercado
-accionario. Buscar en Documentos de Trabajo del Banco Central de Chile, publicaciones de
-Cochilco, revistas locales (Estudios de Economía, Revista de Análisis Económico) y bases
-internacionales. Este es el bloque donde se debe demostrar el vacío específico que la tesis
-llena: la escasez de estudios que vinculen el cobre con la valoración bursátil de las propias
-mineras con exposición a Chile.]
+La evidencia empírica chilena puede ordenarse en tres eslabones. El primero, **cobre ↔ tipo de
+cambio**, es el más sólido: Chen y Rogoff (2003) y Chen, Rogoff y Rossi (2010) sitúan al peso
+chileno entre las *commodity currencies* canónicas, y Pincheira y Hardy (2019), en *Resources
+Policy*, muestran que el tipo de cambio chileno tiene poder predictivo sobre los retornos del
+índice de metales base —incluido el cobre—, dado que este representa cerca de la mitad de las
+exportaciones del país. Labbé y De Gregorio (2011), en un documento de trabajo del Banco Central
+de Chile, documentan cómo el tipo de cambio real opera como *amortiguador* de los shocks del precio
+del cobre. El segundo eslabón, **cobre ↔ mercado accionario chileno agregado**, está representado
+de forma directa por Zurita, Fuentes y Gregoire (2005), quienes, mediante un modelo APT sobre
+retornos accionarios chilenos (1990–2003), encuentran que las **sorpresas en el precio del cobre**
+están preciadas con una prima por riesgo estadísticamente significativa, rechazando el CAPM en
+favor del APT. El tercer eslabón, **cobre ↔ acciones mineras**, solo está documentado a nivel
+internacional: Wallenstein, Mendiola y Chávez-Bedoya (CLADEA) hallan una relación positiva pero
+inelástica entre los retornos de acciones cupríferas y el precio del cobre, y la literatura
+reciente en *Mineral Economics* (2025) modela ese vínculo para las bolsas de Nueva York, Toronto y
+Australia —excluyendo explícitamente a Chile y la Bolsa de Santiago—.
+
+**El vacío que esta tesis llena** emerge con nitidez de esa revisión: no se identificó ningún
+estudio académico que estime econométricamente el efecto del precio del cobre y las variables
+macroeconómicas sobre los retornos de las **acciones cupríferas con exposición a Chile a nivel de
+empresa**, ni que compare formalmente el mercado bursátil internacional con el chileno para el
+período 2004–2024. El antecedente chileno más próximo (Zurita et al., 2005) trabaja con el índice
+agregado y termina en 2003; los estudios que sí desagregan a nivel de acción minera excluyen a
+Chile. La presente investigación se ubica, por tanto, en la intersección no cubierta de tres
+literaturas bien establecidas por separado.
 
 ## 2.5 Eficiencia informacional y segmentación de mercados
 
@@ -125,8 +158,15 @@ Este marco fundamenta la dimensión comparativa de la presente investigación: d
 materias primas se transan a través de empresas que cotizan en mercados de distinta profundidad
 —el mercado bursátil global frente al chileno—, es teóricamente plausible que la transmisión del
 shock del cobre difiera entre ellos. Contrastar esta diferencia constituye el aporte distintivo
-del diseño de triangulación por muestras. [COMPLETAR: evidencia sobre integración/segmentación y
-eficiencia informacional del mercado bursátil chileno respecto de los mercados internacionales.]
+del diseño de triangulación por muestras. La literatura sobre la integración del mercado bursátil
+chileno —en particular los estudios del Mercado Integrado Latinoamericano (MILA), que reúne a
+Chile, Colombia y Perú— documenta una integración **parcial y dependiente del régimen**, con
+correlaciones dinámicas que varían entre episodios de calma y de crisis (por ejemplo, en la
+comparación entre el período previo a la crisis financiera global y la pandemia de COVID-19).
+Asimismo, se ha mostrado que una mayor integración bursátil **reduce la asimetría de información**
+y mejora la eficiencia de la inversión en América Latina. Esta evidencia respalda la hipótesis de
+que el mercado chileno, comparativamente menos profundo, podría incorporar los shocks globales de
+forma más lenta o incompleta que los mercados internacionales.
 
 ## 2.6 Enfoques econométricos para la medición de impacto
 

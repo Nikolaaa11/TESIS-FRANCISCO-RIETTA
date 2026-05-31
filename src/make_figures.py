@@ -26,7 +26,7 @@ BLUE, COPPER, GREEN, RED = "#0071e3", "#c9712d", "#34c759", "#ff3b30"
 
 
 def _data():
-    return json.loads((C.ROOT / "web" / "data.json").read_text(encoding="utf-8"))
+    return json.loads((C.WEB_DATA / "data.json").read_text(encoding="utf-8"))
 
 
 def fig_ciclo(d):

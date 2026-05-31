@@ -4,7 +4,7 @@
     {
       "name": "tesis-web",
       "runtimeExecutable": "python",
-      "runtimeArgs": ["-m", "http.server", "5050", "--directory", "web"],
+      "runtimeArgs": ["-m", "http.server", "5050", "--directory", "../tesis-plataforma"],
       "port": 5050
     }
   ]

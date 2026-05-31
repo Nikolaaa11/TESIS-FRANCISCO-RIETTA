@@ -112,7 +112,7 @@ def construir():
     niveles.columns = ["valor", "cobre", "tc"]
     out["gregory_hansen"] = gregory_hansen(niveles["valor"], niveles[["cobre", "tc"]])
 
-    (C.ROOT / "web" / "extensions.json").write_text(
+    (C.WEB_DATA / "extensions.json").write_text(
         json.dumps(out, ensure_ascii=False, indent=2), encoding="utf-8")
     print(json.dumps(out, ensure_ascii=False, indent=2))
     return out

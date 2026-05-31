@@ -58,16 +58,18 @@ def construir_json():
                     "nota": "Resultados preliminares: faltan EMBI y controles de empresa.",
                     "n_muestras": len(MUESTRAS)}}
 
-    # 1. Triangulación + coeficientes + FEVD por muestra
-    tri, coefs_B, fevd_B = [], None, None
+    # 1. Triangulación + coeficientes + FEVD por muestra (las tres, para alternar en la web)
+    tri = []
+    coefs_por_muestra, fevd_por_muestra = {}, {}
     for suf, etiqueta, mercado in MUESTRAS:
         rp = C.DATA_PROCESSED / f"panel{suf}.parquet"
         rs = C.DATA_PROCESSED / f"series{suf}.parquet"
         if not rp.exists():
             continue
+        clave = etiqueta.split("·")[0].strip()  # 'B', 'A', 'C'
         panel = pd.read_parquet(rp)
         params, pvals, r2, n = _modelo(panel)
-        fila = {"muestra": etiqueta, "mercado": mercado, "n": n,
+        fila = {"muestra": etiqueta, "clave": clave, "mercado": mercado, "n": n,
                 "beta_cobre": round(float(params.get("d_cobre", np.nan)), 4),
                 "p_cobre": round(float(pvals.get("d_cobre", np.nan)), 4),
                 "r2": round(r2, 4)}
@@ -75,16 +77,17 @@ def construir_json():
             fevd = _fevd(pd.read_parquet(rs))
             fila["fevd_global"] = round(sum(v for k, v in fevd.items()
                                             if k in ("Cobre", "VIX (riesgo)")), 4)
-            if suf == "_B":
-                fevd_B = fevd
+            fevd_por_muestra[clave] = fevd
         tri.append(fila)
-        if suf == "_B":
-            coefs_B = [{"factor": ETIQUETAS.get(k, k), "coef": round(float(v), 4),
-                        "sig": bool(pvals.get(k, 1) < 0.05)}
-                       for k, v in params.items() if k in REGS]
+        coefs_por_muestra[clave] = [
+            {"factor": ETIQUETAS.get(k, k), "coef": round(float(v), 4),
+             "sig": bool(pvals.get(k, 1) < 0.05)}
+            for k, v in params.items() if k in REGS]
     out["triangulacion"] = tri
-    out["coeficientes_B"] = coefs_B
-    out["fevd_B"] = fevd_B
+    out["coeficientes"] = coefs_por_muestra       # {'B':[...], 'A':[...], 'C':[...]}
+    out["fevd"] = fevd_por_muestra
+    out["coeficientes_B"] = coefs_por_muestra.get("B")   # compat
+    out["fevd_B"] = fevd_por_muestra.get("B")
 
     # 2. Ciclo del cobre (precio mensual + fase)
     g = pd.read_parquet(C.DATA_INTERIM / "raw_macro_global.parquet")
@@ -112,8 +115,8 @@ def construir_json():
 
     # 4. Fusionar hallazgos avanzados (advanced.json + extensions.json) si existen
     avz = {}
-    for nombre in ("advanced.json", "extensions.json"):
-        f = C.ROOT / "web" / nombre
+    for nombre in ("advanced.json", "extensions.json", "robustness.json"):
+        f = C.WEB_DATA / nombre
         if f.exists():
             try:
                 avz.update(json.loads(f.read_text(encoding="utf-8")))
@@ -122,7 +125,7 @@ def construir_json():
     if avz:
         out["avanzado"] = avz
 
-    ruta = C.ROOT / "web" / "data.json"
+    ruta = C.WEB_DATA / "data.json"
     ruta.parent.mkdir(exist_ok=True)
     ruta.write_text(json.dumps(out, ensure_ascii=False, indent=2), encoding="utf-8")
     print(f"[guardado] {ruta}  ({len(json.dumps(out))} bytes)")
