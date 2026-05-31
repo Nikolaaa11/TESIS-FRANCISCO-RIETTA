@@ -13,12 +13,12 @@
 ## 1.1 Contextualización
 
 El cobre ocupa un lugar estructural en la economía chilena. Chile es el principal productor
-mundial de cobre, y este metal representa una fracción central de sus exportaciones y un aporte
-significativo a los ingresos fiscales y al producto. [COMPLETAR: participación del cobre en las
-exportaciones totales y en el PIB, con cifra y año, fuente Cochilco / Banco Central de Chile.]
-Esta dependencia convierte al precio del cobre en una variable macroeconómica de primer orden
-para el país, con efectos documentados sobre el tipo de cambio, las cuentas externas y el ciclo
-económico nacional.
+mundial de cobre, y este metal concentra cerca de la mitad de las exportaciones del país y una
+proporción significativa de la inversión extranjera directa (Pincheira y Hardy, 2019), además de
+constituir un aporte relevante a los ingresos fiscales. Esta dependencia convierte al precio del
+cobre en una variable macroeconómica de primer orden para Chile, con efectos ampliamente
+documentados sobre el tipo de cambio, las cuentas externas y el ciclo económico nacional (Labbé y
+De Gregorio, 2011; Pedersen, 2015).
 
 En el plano financiero, las empresas dedicadas a la extracción y procesamiento de cobre
 constituyen un sector cuya valoración bursátil está, en principio, estrechamente ligada a la

@@ -102,8 +102,11 @@ El signo del efecto no es teóricamente unívoco: una depreciación de la moneda
 beneficiar los márgenes de una exportadora con costos en moneda local, pero el resultado neto
 depende de la estructura de costos, del grado de cobertura y de la moneda en que cotiza la
 acción. Esta ambigüedad, lejos de ser una debilidad, constituye una pregunta empírica de
-interés. [COMPLETAR: evidencia sobre exposición cambiaria en economías exportadoras de
-commodities y, en particular, en empresas chilenas.]
+interés. En el caso de las economías exportadoras de commodities, la literatura de *commodity
+currencies* (Chen y Rogoff, 2003; Cashin, Céspedes y Sahay, 2004) muestra que el tipo de cambio y
+el precio del commodity comparten una relación de largo plazo, de modo que el efecto cambiario sobre
+una minera exportadora no puede interpretarse de forma aislada del propio ciclo del metal —un
+matiz que la presente investigación incorpora al modelar conjuntamente ambos factores.
 
 ## 2.4 Cobre, tipo de cambio y la economía chilena
 
@@ -190,8 +193,12 @@ robustez el modelo de cambio de régimen de Hamilton (1989). La modelación de l
 cuando resulta pertinente, se apoya en los modelos ARCH/GARCH de Engle (1982) y Bollerslev
 (1986).
 
-[COMPLETAR: aplicaciones recientes que combinen VAR/VECM con análisis por regímenes en mercados
-de commodities, para reforzar la justificación del objetivo específico 5.]
+La pertinencia de un análisis condicionado al régimen encuentra respaldo en la literatura reciente
+de mercados de metales: Zhu, Chen y Chen (2021) documentan que el efecto de los precios de los
+metales y de la incertidumbre sobre la valoración bursátil del sector **difiere según el estado del
+mercado** (alcista o bajista), y Pedersen (2015) muestra que la respuesta de la economía chilena al
+cobre depende de la **naturaleza del shock**. Ambos resultados motivan el análisis por fases del
+ciclo y la identificación de shocks que adopta esta investigación.
 
 ## 2.7 Síntesis e identificación del vacío de investigación
 
