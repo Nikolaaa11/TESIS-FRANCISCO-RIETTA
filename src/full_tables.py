@@ -121,6 +121,33 @@ def fevd_multi():
     return md_table(tab, "Horizonte")
 
 
+def anexo_predictivo():
+    import json
+    f = C.WEB_DATA / "predictor.json"
+    if not f.exists():
+        return "## Anexo I. Extensión predictiva\n\n(Ejecutar `python -m src.predictor` para generar.)\n"
+    pd_ = json.loads(f.read_text(encoding="utf-8"))
+    filas = "\n".join(
+        f"| {name} | {v['r2_oos']:+.3f} | {v['acierto_direccional']*100:.0f}% | {v['rmse']:.4f} | {v['mae']:.4f} |"
+        for name, v in pd_["metricas_oos"].items())
+    return (
+        "## Anexo I. Extensión predictiva: ¿explican o anticipan?\n\n"
+        "Como complemento a la naturaleza explicativa de la tesis, se evaluó la capacidad "
+        "**predictiva** fuera de muestra de los factores macroeconómicos sobre el retorno mensual "
+        "del cobre (a un mes), comparando un baseline ingenuo, un AR(1), un modelo lineal regularizado "
+        "(Ridge) y dos modelos no lineales (Random Forest, Gradient Boosting), con división temporal "
+        f"{pd_['n_train']}/{pd_['n_test']} (entrenamiento/prueba).\n\n"
+        "| Modelo | R² fuera de muestra | Acierto direccional | RMSE | MAE |\n"
+        "|---|---|---|---|---|\n" + filas + "\n\n"
+        "El **R² fuera de muestra es cercano a cero o negativo** en todos los modelos: los factores "
+        "macroeconómicos **explican** el retorno contemporáneo del cobre (Capítulo 4) pero apenas lo "
+        "**anticipan** a un mes. Este resultado, lejos de ser una debilidad, **refuerza la "
+        "hipótesis de eficiencia de mercado en su forma débil** y justifica el enfoque explicativo —y "
+        "no predictivo— adoptado. El mejor desempeño direccional corresponde al término de momentum "
+        "(AR(1)). Una versión interactiva de este modelo se encuentra en la plataforma web del "
+        "proyecto.\n")
+
+
 def construir():
     partes = ["# Anexos\n",
               "> Tablas generadas automáticamente a partir de los datos reales del proyecto "
@@ -154,7 +181,8 @@ def construir():
               "Todo el código de adquisición, transformación, estimación y generación de figuras "
               "y tablas está disponible en el repositorio público del proyecto, organizado en "
               "módulos reproducibles (`src/`) y cuadernos Jupyter (`notebooks/`). Cada resultado "
-              "de esta tesis puede regenerarse ejecutando los scripts correspondientes.\n"]
+              "de esta tesis puede regenerarse ejecutando los scripts correspondientes.\n", "",
+              anexo_predictivo()]
     (C.ROOT / "docs" / "anexos.md").write_text("\n".join(partes), encoding="utf-8")
     print("[ok] docs/anexos.md")
 

@@ -125,3 +125,18 @@ N = 864; R² = 0.1132; empresas = 4.
 ## Anexo H. Disponibilidad del código
 
 Todo el código de adquisición, transformación, estimación y generación de figuras y tablas está disponible en el repositorio público del proyecto, organizado en módulos reproducibles (`src/`) y cuadernos Jupyter (`notebooks/`). Cada resultado de esta tesis puede regenerarse ejecutando los scripts correspondientes.
+
+
+## Anexo I. Extensión predictiva: ¿explican o anticipan?
+
+Como complemento a la naturaleza explicativa de la tesis, se evaluó la capacidad **predictiva** fuera de muestra de los factores macroeconómicos sobre el retorno mensual del cobre (a un mes), comparando un baseline ingenuo, un AR(1), un modelo lineal regularizado (Ridge) y dos modelos no lineales (Random Forest, Gradient Boosting), con división temporal 180/61 (entrenamiento/prueba).
+
+| Modelo | R² fuera de muestra | Acierto direccional | RMSE | MAE |
+|---|---|---|---|---|
+| Random walk (0) | -0.016 | 0% | 0.0500 | 0.0372 |
+| AR(1) | +0.056 | 64% | 0.0482 | 0.0357 |
+| Ridge (lineal) | -0.117 | 54% | 0.0525 | 0.0388 |
+| Random Forest | +0.033 | 56% | 0.0488 | 0.0361 |
+| Gradient Boosting | -0.167 | 54% | 0.0536 | 0.0399 |
+
+El **R² fuera de muestra es cercano a cero o negativo** en todos los modelos: los factores macroeconómicos **explican** el retorno contemporáneo del cobre (Capítulo 4) pero apenas lo **anticipan** a un mes. Este resultado, lejos de ser una debilidad, **refuerza la hipótesis de eficiencia de mercado en su forma débil** y justifica el enfoque explicativo —y no predictivo— adoptado. El mejor desempeño direccional corresponde al término de momentum (AR(1)). Una versión interactiva de este modelo se encuentra en la plataforma web del proyecto.
