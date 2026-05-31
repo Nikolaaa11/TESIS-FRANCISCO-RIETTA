@@ -66,6 +66,17 @@ Tres lecturas se desprenden:
 
 ![Sensibilidad de los retornos a cada factor macro-financiero (muestra B).](outputs/figures/fig_coeficientes.png)
 
+**Nota sobre la especificación (efectos fijos vs. aleatorios).** Conviene precisar por qué se
+adoptan efectos fijos. Dado que los regresores son factores macroeconómicos **comunes a todas las
+empresas** —el precio del cobre, el VIX o el tipo de cambio toman el mismo valor para cada firma en
+cada mes—, los estimadores de efectos fijos y de efectos aleatorios producen **pendientes
+idénticas**; lo único que distingue a ambas especificaciones es el tratamiento de la media
+específica de cada empresa. En consecuencia, el test de Hausman resulta degenerado (H ≈ 0) y no
+discrimina entre ambos. Se retiene la especificación de **efectos fijos** porque absorbe la
+heterogeneidad no observada y constante de cada empresa (distintas medias de retorno por niveles de
+riesgo, tamaño o jurisdicción), constituyendo la opción más conservadora y estándar en la
+literatura financiera.
+
 ## 4.3 Relaciones de largo plazo (OE3)
 
 La evidencia de cointegración es **mixta y, por tanto, no concluyente**. El test de Johansen sobre
