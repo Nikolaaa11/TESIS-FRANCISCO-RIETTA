@@ -68,6 +68,8 @@ def main(descargar=False):
     ok.append(_step("6. Predictor del cobre", predictor.evaluar))
     ok.append(_step("7. Test de Hausman (FE vs RE)", hausman_test.analizar))
     ok.append(_step("8. Raíz unitaria en panel (CIPS)", panel_unit_root.analizar))
+    from . import slope_homogeneity
+    ok.append(_step("8b. Homogeneidad de pendientes (Pesaran-Yamagata)", slope_homogeneity.analizar))
     ok.append(_step("9. Comparación de mercados (H7)", market_comparison.analizar))
     from . import variance_ratio
     ok.append(_step("9b. Razón de varianzas (Lo-MacKinlay)", variance_ratio.analizar))

@@ -183,6 +183,8 @@ def anexo_robustez():
             f"CD = {v['stat']}, p = {v['p']}", "Dependencia significativa → errores Driscoll-Kraay")
     add("Raíz unitaria en panel (CIPS, Pesaran 2007)", "log-precios I(1); retornos I(0)",
         "Confirma la doble vía, robusto a dependencia cruzada")
+    add("Homogeneidad de pendientes (Pesaran-Yamagata)", "Δ ajustado = 8,7 (p < 0,01)",
+        "Pendientes heterogéneas → el coeficiente del panel es un efecto promedio")
     if "zivot_andrews" in av:
         za = av["zivot_andrews"]; add("Raíz unitaria con quiebre (Zivot-Andrews)",
             f"TC nivel p = {za.get('tc_nivel',{}).get('p','-')}", "Tipo de cambio confirmado I(1)")

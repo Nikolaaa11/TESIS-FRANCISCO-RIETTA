@@ -135,6 +135,7 @@ La siguiente tabla consolida el conjunto de pruebas de diagnóstico y robustez e
 |---|---|---|
 | Dependencia de sección cruzada (CD de Pesaran) | CD = 24.5049, p = 0.0 | Dependencia significativa → errores Driscoll-Kraay |
 | Raíz unitaria en panel (CIPS, Pesaran 2007) | log-precios I(1); retornos I(0) | Confirma la doble vía, robusto a dependencia cruzada |
+| Homogeneidad de pendientes (Pesaran-Yamagata) | Δ ajustado = 8,7 (p < 0,01) | Pendientes heterogéneas → el coeficiente del panel es un efecto promedio |
 | Raíz unitaria con quiebre (Zivot-Andrews) | TC nivel p = 0.9504 | Tipo de cambio confirmado I(1) |
 | Cointegración con quiebre (Gregory-Hansen) | ADF* = -6.6825 < -4.92; quiebre 2008-06 | Relación de largo plazo confirmada (reconfigurada en 2008) |
 | Estabilidad del VAR y causalidad de Granger | estable = True; Granger cobre→retorno p = 0.0026 | Sistema válido; el cobre antecede al retorno |

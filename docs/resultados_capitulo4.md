@@ -196,6 +196,17 @@ correlación contemporánea en sus retornos. Ignorar esta dependencia habría se
 unitario), condición necesaria para la validez de las funciones impulso-respuesta y de la
 descomposición de varianza reportadas en §4.4.
 
+**Homogeneidad de pendientes.** El test de Pesaran y Yamagata (2008) rechaza la hipótesis de
+pendientes homogéneas entre empresas (Δ ajustado = 8,7 en la muestra B; p < 0,01), lo que indica
+que las distintas productoras responden al shock del cobre con sensibilidades **heterogéneas** —un
+resultado económicamente esperable, dada su diferente composición (cobre puro frente a mineras
+diversificadas), tamaño y jurisdicción—. La implicancia es que el coeficiente del panel debe
+interpretarse como un **efecto promedio** del sector, en torno al cual existe dispersión entre
+firmas; ello motiva, como extensión, un análisis a nivel de empresa con controles idiosincráticos.
+La validez de la prueba se verificó sobre paneles sintéticos de pendientes homogéneas (no rechaza)
+y heterogéneas (rechaza); no obstante, con el reducido número de empresas la magnitud exacta del
+estadístico debe leerse con cautela.
+
 **Robustez por subperíodos.** Al reestimar el coeficiente del cobre en submuestras, este se
 mantiene positivo y significativo, con una magnitud que **aumenta del período 2004–2019 (0,559) al
 período 2020–2024 (0,751)**. La mayor sensibilidad reciente es coherente con la intensificación de
