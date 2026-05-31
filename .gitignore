@@ -16,3 +16,6 @@ Thumbs.db
 # Notas: data/interim y data/processed (parquet) SÍ se versionan — son pequeños y
 # permiten reproducir la web sin re-descargar. El logo (assets/logo_uss.png) y
 # web/logo_uss.png deben agregarse manualmente.
+
+# Vercel
+.vercel/
